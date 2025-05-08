@@ -64,6 +64,19 @@ export const getAllUser = async () => {
         return Error(error)
     }
 }
+export const getSingleUser = async ({id} : {id: string}) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`,{
+            next: {
+                tags: ["USER"]
+            }
+        })
+        const result = await res.json();
+        return result;
+    } catch (error: any) {
+        return Error(error)
+    }
+}
 
 export const updateUser = async (id: string , data: FieldValues) => {
     try {

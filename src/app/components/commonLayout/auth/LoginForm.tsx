@@ -20,7 +20,12 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
         reset
-    } = useForm<FormValues>();
+    } = useForm<FormValues>({
+        defaultValues: {
+            email : "a@gmail.com",
+            password: "123456"
+        }
+    });
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         const toastLoading = toast.loading("Logging...")
@@ -30,7 +35,7 @@ const LoginForm = () => {
             if (res.success) {
                 toast.success(res.message, { id: toastLoading })
                 reset();
-                router.push('/login')
+                router.push('/')
             } else if (res.err) {
                 toast.error(res?.message || "Something went wrong!", { id: toastLoading })
             }

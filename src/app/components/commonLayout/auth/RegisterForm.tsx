@@ -2,6 +2,7 @@
 "use client";
 
 import { registerUser } from "@/services/auth";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -103,7 +104,7 @@ const RegisterForm = () => {
 
         <p className="text-sm mt-6 text-center text-white/70">
           Already have an account?{" "}
-          <a href="/login" className="underline text-cyan-400">Login here</a>
+          <Link href="/login" className="underline text-cyan-400">Login here</Link>
         </p>
       </div>
     </div>
