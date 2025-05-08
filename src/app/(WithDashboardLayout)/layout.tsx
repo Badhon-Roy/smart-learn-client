@@ -6,12 +6,20 @@ import { usePathname } from 'next/navigation';
 import {
     Menu as MenuIcon,
     Close as CloseIcon,
-    Dashboard as DashboardIcon,
-    People as PeopleIcon,
-    Settings as SettingsIcon,
     Logout as LogoutIcon,
-    Home,
 } from '@mui/icons-material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
+import HomeIcon from '@mui/icons-material/Home';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import QuizIcon from '@mui/icons-material/Quiz';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import ClassIcon from '@mui/icons-material/Class';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import SettingsIcon from '@mui/icons-material/Settings';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUser } from '@/context/UserContext';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
@@ -19,22 +27,36 @@ import { logout } from '@/services/auth';
 
 const navItems = {
     student: [
-        { label: 'Dashboard', href: '/dashboard', icon: <DashboardIcon /> },
-        { label: 'My Courses', href: '/student/courses', icon: <PeopleIcon /> },
-        { label: 'Home', href: '/', icon: <Home /> },
+      { label: 'Dashboard', href: '/dashboard', icon: <DashboardIcon /> },
+      { label: 'Browse Courses', href: '/courses', icon: <ClassIcon /> },
+      { label: 'My Courses', href: '/student/courses', icon: <PlayCircleIcon /> },
+      { label: 'Assignments', href: '/student/assignments', icon: <AssignmentTurnedInIcon /> },
+      { label: 'Quizzes', href: '/student/quizzes', icon: <QuizIcon /> },
+      { label: 'Certificates', href: '/student/certificates', icon: <WorkspacePremiumIcon /> },
+      { label: 'Progress', href: '/student/progress', icon: <SettingsIcon /> },
+      { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
+  
     instructor: [
-        { label: 'Dashboard', href: '/dashboard', icon: <DashboardIcon /> },
-        { label: 'Manage Classes', href: '/instructor/classes', icon: <SettingsIcon /> },
-        { label: 'Home', href: '/', icon: <Home /> },
+      { label: 'Instructor Dashboard', href: '/dashboard/instructor', icon: <DashboardIcon /> },
+      { label: 'Manage Course', href: '/dashboard/instructor/manage-course', icon: <UploadFileIcon /> },
+      { label: 'Manage Content', href: '/dashboard/instructor/manage-content', icon: <UploadFileIcon /> },
+      { label: 'Manage Quizzes', href: '/dashboard/instructor/manage-quizzes', icon: <QuizIcon /> },
+      { label: 'Track Performance', href: '/dashboard/instructor/performance', icon: <PeopleIcon /> },
+      { label: 'Issue Certificates', href: '/dashboard/instructor/certificates', icon: <WorkspacePremiumIcon /> },
+      { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
+  
     admin: [
-        { label: 'Dashboard', href: '/dashboard/admin', icon: <DashboardIcon /> },
-        { label: 'Users', href: '/dashboard/admin/users', icon: <PeopleIcon /> },
-        { label: 'Site Settings', href: '/dashboard/admin/settings', icon: <SettingsIcon /> },
-        { label: 'Home', href: '/', icon: <Home /> },
+      { label: 'Admin Dashboard', href: '/dashboard/admin', icon: <DashboardIcon /> },
+      { label: 'User Management', href: '/dashboard/admin/users', icon: <PeopleIcon /> },
+      { label: 'Course Approvals', href: '/dashboard/admin/courses', icon: <AssignmentTurnedInIcon /> },
+      { label: 'Payment Management', href: '/dashboard/admin/payments', icon: <MonetizationOnIcon /> },
+      { label: 'Site Settings', href: '/dashboard/admin/settings', icon: <SettingsIcon /> },
+      { label: 'Admin Panel', href: '/dashboard/admin/control', icon: <AdminPanelSettingsIcon /> },
+      { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
-};
+  };
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const { user ,setIsLoading, isLoading} = useUser();
