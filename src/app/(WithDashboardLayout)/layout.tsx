@@ -59,9 +59,9 @@ const navItems = {
   };
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-    const { user ,setIsLoading, isLoading} = useUser();
-    const role = user?.role || 'student';
-    const currentNavItems = navItems[role] || [];
+    const { user ,setIsLoading} = useUser();
+    const role = user?.role;
+    const currentNavItems = role && navItems[role];;
     const pathname = usePathname();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -75,9 +75,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    if(isLoading){
-        return <p>Loading...</p>
-    }
 
     const handleLogOut = () => {
         logout();
@@ -91,7 +88,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className=" text-3xl font-bold tracking-widest text-[#00ffff]">NeoDash</div>
                 <h2 className='uppercase'><span className='text-[#00ffff]'>{user?.role}</span> Dashboard</h2>
                 <nav className="flex flex-col gap-2 mt-8">
-                    {currentNavItems.map(({ label, href, icon }) => {
+                    {currentNavItems?.map(({ label, href, icon }) => {
                         const isActive = pathname === href;
                         return (
                             <Link
@@ -155,7 +152,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                         transition={{ type: 'spring', stiffness: 200 }}
                         className="md:hidden fixed top-[60px] left-0 h-[calc(100vh-60px)] w-64 z-40 bg-[#101929]/90 backdrop-blur-lg p-4 border-r border-white/10 flex flex-col"
                     >
-                        {currentNavItems.map(({ label, href, icon }) => {
+                        {currentNavItems?.map(({ label, href, icon }) => {
                             const isActive = pathname === href;
                             return (
                                 <Link

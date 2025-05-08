@@ -1,5 +1,5 @@
 
-const ManageContentDashboardPage = () => {
+const ManageContentDashboardPage = async() => {
     return (
         <div>
             <h2>Manage Content</h2>

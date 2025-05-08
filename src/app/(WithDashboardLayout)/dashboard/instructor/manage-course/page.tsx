@@ -1,10 +1,12 @@
 import ManageCourse from "@/app/components/dashboardLayout/instructor/ManageCourse";
+import { getAllCourse } from "@/services/course";
 
 
-const ManageCoursesDashboardPage = () => {
+const ManageCoursesDashboardPage =async () => {
+    const {data} = await getAllCourse();
     return (
         <div>
-            <ManageCourse/>
+            <ManageCourse courses={data || []}/>
         </div>
     );
 };
