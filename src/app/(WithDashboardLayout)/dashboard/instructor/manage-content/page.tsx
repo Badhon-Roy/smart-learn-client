@@ -1,8 +1,14 @@
+"use server"
+import ManageContent from "@/app/components/dashboardLayout/instructor/content/ManageContent";
+import { getAllCourse } from "@/services/course";
+import { ICourse } from "@/types";
 
-const ManageContentDashboardPage = async() => {
+const ManageContentDashboardPage = async () => {
+    const { data } = await getAllCourse();
+    const ongoingCourses = await data?.filter((course: ICourse) => course.status === "Ongoing")
     return (
         <div>
-            <h2>Manage Content</h2>
+           <ManageContent ongoingCourses={ongoingCourses}/>
         </div>
     );
 };

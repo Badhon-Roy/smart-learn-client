@@ -1,4 +1,4 @@
-import UpdateCourseForm from "@/app/components/dashboardLayout/instructor/UpdateCourseForm";
+import UpdateCourseForm from "@/app/components/dashboardLayout/instructor/course/UpdateCourseForm";
 import { getAllUser } from "@/services/auth";
 import { getSingleCourse } from "@/services/course";
 import { IUser } from "@/types";

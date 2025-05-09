@@ -1,4 +1,4 @@
-import CreateCourseForm from "@/app/components/dashboardLayout/instructor/CreateCourseForm";
+import CreateCourseForm from "@/app/components/dashboardLayout/instructor/course/CreateCourseForm";
 import { getAllUser } from "@/services/auth";
 import { IUser } from "@/types";
 import Link from "next/link";
