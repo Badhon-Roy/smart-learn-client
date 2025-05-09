@@ -180,7 +180,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </AnimatePresence>
 
             {/* Main Content */}
-            <main className="flex-1 p-4 md:p-8 pt-24 md:pt-8 transition-all duration-500">
+            <main className="flex-1 p-4 md:p-8 pt-24 md:pt-8 transition-all duration-500 overflow-y-auto">
                 {children}
             </main>
         </div>

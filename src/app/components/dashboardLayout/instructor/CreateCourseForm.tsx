@@ -7,13 +7,19 @@ import { Delete } from "@mui/icons-material";
 import { toast } from "sonner";
 import { createCourse } from "@/services/course";
 import { useRouter } from "next/navigation";
+import { IUser } from "@/types";
 
 
 const courseSchema = z.object({
     title: z.string().min(3),
     thumbnail: z.string().url(),
     description: z.string().min(10),
-    instructor: z.string().length(24),
+    instructors: z.array(
+        z.object({
+            instructor: z.string().min(5, "Instructor ID is required"),
+            subject: z.string().min(2, "Subject must be at least 2 characters"),
+        })
+    ),
     price: z.number().min(0),
     discountPrice: z.number().min(0).optional(),
     class: z.string().min(1),
@@ -42,7 +48,7 @@ const courseSchema = z.object({
 
 type CourseFormData = z.infer<typeof courseSchema>;
 
-const CreateCourseForm = () => {
+const CreateCourseForm = ({ filterInstructors }: { filterInstructors: IUser[] }) => {
     const router = useRouter();
     const {
         register,
@@ -55,6 +61,7 @@ const CreateCourseForm = () => {
             subject: [{ name: "" }],
             lessons: [{ title: "", videoUrl: "", isView: false }],
             faqs: [{ question: "", answer: "" }],
+            instructors: [{ instructor: "", subject: "" }],
             whatYouWillLearn: [""],
         },
     });
@@ -67,6 +74,10 @@ const CreateCourseForm = () => {
     const { fields: faqFields, append: appendFaq, remove: removeFaq } = useFieldArray({
         control,
         name: "faqs",
+    });
+    const { fields: insFields, append: appendIns, remove: removeIns } = useFieldArray({
+        control,
+        name: "instructors",
     });
 
     const { fields: subjectFields, append: appendSubject, remove: removeSubject } = useFieldArray({
@@ -115,9 +126,6 @@ const CreateCourseForm = () => {
                     <p className="text-red-500 text-sm">{errors.thumbnail?.message}</p>
                 </div>
                 <div>
-                    <input {...register("instructor")} placeholder="Instructor ID" className="input input-bordered border rounded border-white/50 w-full p-3" />
-                </div>
-                <div>
                     <input type="number" {...register("price", { valueAsNumber: true })} placeholder="Price" className="input input-bordered border rounded border-white/50 w-full p-3" />
                 </div>
                 <div>
@@ -149,12 +157,67 @@ const CreateCourseForm = () => {
                     {subjectFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2">
                             <input {...register(`subject.${index}.name`)} placeholder={`Subject ${index + 1}`} className="input input-bordered border rounded border-white/50 w-full p-3" />
-                            <button type="button" onClick={() => removeSubject(index)} className="btn btn-error cursor-pointer"><Delete className="text-red-600" /></button>
+                            <button type="button" onClick={() => removeSubject(index)} className="cursor-pointer"><Delete className="text-red-600" /></button>
                         </div>
                     ))}
                     <button type="button" onClick={() => appendSubject({ name: "" })} className="btn btn-secondary w-fit cursor-pointer hover:text-amber-500">+ Add Subject</button>
                 </div>
             </div>
+
+            <div>
+                <h3 className="text-lg font-semibold mb-4">Instructors</h3>
+                <div className="grid gap-4">
+                    {insFields?.map((item, index) => (
+                        <div key={item.id} className="grid md:grid-cols-2 gap-2">
+                            <select
+                                {...register(`instructors.${index}.instructor`)}
+                                className="select select-bordered border rounded border-white/50 p-3 w-full text-white"
+                            >
+                                <option value="">Select Instructor</option>
+                                {filterInstructors?.map((inst) => (
+                                    <option className="text-black" key={inst?._id} value={inst?._id}>
+                                        {inst?.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <input
+                                {...register(`instructors.${index}.subject`)}
+                                placeholder="Subject"
+                                className="input input-bordered border rounded border-white/50 w-full p-3"
+                            />
+                            <div className="md:col-span-2">
+                                <button
+                                    type="button"
+                                    onClick={() => removeIns(index)}
+                                    className="btn btn-error hover:text-red-500 cursor-pointer"
+                                >
+                                    Remove Instructor
+                                </button>
+                            </div>
+                            {/* Display validation errors if any */}
+                            {errors?.instructors?.[index]?.instructor && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.instructors[index].instructor.message}
+                                </p>
+                            )}
+                            {errors?.instructors?.[index]?.subject && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.instructors[index].subject.message}
+                                </p>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <button
+                    type="button"
+                    onClick={() => appendIns({ instructor: "", subject: "" })}
+                    className="btn btn-secondary mt-4 hover:text-amber-500"
+                >
+                    + Add Instructor
+                </button>
+            </div>
+
+
 
             {/* Lessons Section */}
             <div>

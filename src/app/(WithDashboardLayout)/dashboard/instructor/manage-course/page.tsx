@@ -4,6 +4,7 @@ import { getAllCourse } from "@/services/course";
 
 const ManageCoursesDashboardPage =async () => {
     const {data} = await getAllCourse();
+    console.log(data);
     return (
         <div>
             <ManageCourse courses={data || []}/>

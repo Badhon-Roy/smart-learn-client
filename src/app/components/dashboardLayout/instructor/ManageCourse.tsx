@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Link from "next/link";
@@ -13,6 +14,9 @@ import { useState } from "react";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Add } from "@mui/icons-material";
+import { toast } from "sonner";
+import { deleteCourse } from "@/services/course";
+import { useRouter } from "next/navigation";
 
 interface Course {
   _id: string;
@@ -31,8 +35,10 @@ const columns = [
 ];
 
 const ManageCourse = ({ courses }: { courses: Course[] }) => {
+  console.log(courses);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const router = useRouter();
 
   const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
@@ -46,13 +52,21 @@ const ManageCourse = ({ courses }: { courses: Course[] }) => {
   };
 
   const handleEdit = (id: string) => {
-    console.log("Edit course:", id);
-    // Add your route or modal here
+    router.push(`/dashboard/instructor/update-course/${id}`)
   };
 
-  const handleDelete = (id: string) => {
-    console.log("Delete course:", id);
-    // Show confirmation and delete logic
+  const handleDelete = async (id: string) => {
+    const toastLoading = toast.loading("Deleting...")
+    try {
+      const res = await deleteCourse(id)
+      if (res.success) {
+        toast.success(res.message, { id: toastLoading })
+      } else if (res.err) {
+        toast.error(res?.message || "Something went wrong!", { id: toastLoading })
+      }
+    } catch (error: any) {
+      toast.error(error.message, { id: toastLoading })
+    }
   };
 
   return (
@@ -117,21 +131,20 @@ const ManageCourse = ({ courses }: { courses: Course[] }) => {
                           </div>
                         )}
                       </TableCell>
-                      <TableCell className="font-medium text-white">
-                        {course.title}
+                      <TableCell className="font-medium" style={{ color: "white" }}>
+                        {course?.title}
                       </TableCell>
-                      <TableCell className="font-semibold text-amber-300">
+                      <TableCell className="font-semibold " style={{ color: "#ffb500" }}>
                         {course.price}৳
                       </TableCell>
                       <TableCell>
                         <span
-                          className={`px-3 py-1 rounded-full text-sm font-bold shadow-md ${
-                            course.status === "Ongoing"
+                          className={`px-3 py-1 rounded-full text-sm font-bold shadow-md ${course.status === "Ongoing"
                               ? "bg-green-500/20 text-green-300"
                               : course.status === "Upcoming"
-                              ? "bg-yellow-500/20 text-yellow-300"
-                              : "bg-blue-500/20 text-blue-300"
-                          }`}
+                                ? "bg-yellow-500/20 text-yellow-300"
+                                : "bg-blue-500/20 text-blue-300"
+                            }`}
                         >
                           {course.status}
                         </span>
@@ -139,14 +152,14 @@ const ManageCourse = ({ courses }: { courses: Course[] }) => {
                       <TableCell>
                         <div className="flex gap-3">
                           <button
-                            onClick={() => handleEdit(course._id)}
-                            className="bg-blue-500/30 hover:bg-blue-500/50 text-blue-300 p-2 rounded-full transition"
+                            onClick={() => handleEdit(course?._id)}
+                            className="bg-blue-500/30 hover:bg-blue-500/50 text-blue-300 p-2 rounded-full transition cursor-pointer"
                           >
                             <EditNoteIcon fontSize="small" />
                           </button>
                           <button
-                            onClick={() => handleDelete(course._id)}
-                            className="bg-red-500/30 hover:bg-red-500/50 text-red-300 p-2 rounded-full transition"
+                            onClick={() => handleDelete(course?._id)}
+                            className="bg-red-500/30 hover:bg-red-500/50 text-red-300 p-2 rounded-full transition cursor-pointer"
                           >
                             <DeleteForeverIcon fontSize="small" />
                           </button>
