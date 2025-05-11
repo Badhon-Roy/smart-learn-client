@@ -10,6 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import { Add } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 interface Course {
     _id: string;
     title: string;
@@ -30,6 +31,7 @@ const columns = [
 const ManageContent = ({ ongoingCourses }: { ongoingCourses: Course[] }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const router = useRouter();
     const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -40,6 +42,10 @@ const ManageContent = ({ ongoingCourses }: { ongoingCourses: Course[] }) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const handleAddContent = (id: string) => {
+        router.push(`/dashboard/instructor/add-content/${id}`)
+    }
     return (
         <div className="container mx-auto p-4 w-full">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
@@ -117,6 +123,7 @@ const ManageContent = ({ ongoingCourses }: { ongoingCourses: Course[] }) => {
                                             </TableCell>
                                             <TableCell>
                                                 <button
+                                                    onClick={()=>handleAddContent(course?._id)}
                                                     className="bg-[#07a69986] text-white/80 hover:text-white hover:bg-[#07a698] p-2 rounded-full transition cursor-pointer"
                                                 >
                                                     <Add fontSize="small" /> Add Content

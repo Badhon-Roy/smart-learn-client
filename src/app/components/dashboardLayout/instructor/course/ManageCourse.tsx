@@ -35,7 +35,6 @@ const columns = [
 ];
 
 const ManageCourse = ({ courses }: { courses: Course[] }) => {
-  console.log(courses);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const router = useRouter();
