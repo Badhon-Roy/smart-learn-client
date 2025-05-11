@@ -96,6 +96,28 @@ export const AddContent = async (id: string, data: FieldValues) => {
     }
 };
 
+export const updateCourseApproval = async (id: string, data: FieldValues) => {
+    const accessToken = (await cookies()).get('accessToken')?.value;
+
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/courses/approve/${id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...(accessToken && { Authorization: `${accessToken}` })
+                },
+                body: JSON.stringify(data)
+            }
+        );
+        revalidateTag("COURSE")
+        const result = await res.json();
+        return result;
+    } catch (error: any) {
+        return Error(error);
+    }
+};
+
 export const deleteCourse = async (id: string) => {
     const accessToken = (await cookies()).get('accessToken')?.value;
     try {

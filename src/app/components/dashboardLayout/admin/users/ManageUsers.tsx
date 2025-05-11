@@ -100,8 +100,8 @@ const ManageUsers = ({ users }: { users: User[] }) => {
     };
 
     const filteredUsers = roleFilter === "all"
-  ? users
-  : users.filter(user => user.role === roleFilter);
+        ? users
+        : users.filter(user => user.role === roleFilter);
 
 
 
@@ -111,7 +111,7 @@ const ManageUsers = ({ users }: { users: User[] }) => {
                 <h2 className="text-3xl font-extrabold text-white mb-6 text-center sm:text-left">
                     👥 Manage Users
                 </h2>
-                <div className="flex justify-between items-center gap-8 mx-4"> 
+                <div className="flex justify-between items-center gap-8 mx-4">
                     <div className="flex gap-2 mb-4 justify-center sm:justify-start">
                         {["all", "student", "instructor", "admin"].map((role) => (
                             <button
@@ -128,7 +128,7 @@ const ManageUsers = ({ users }: { users: User[] }) => {
                         ))}
                     </div>
                     <div>
-                       <h2 className="capitalize text-lg font-bold border border-white/30 bg-[#0e1523] rounded-full px-2 py-1">Total {roleFilter}: {filteredUsers?.length} Person</h2>
+                        <h2 className="capitalize text-lg font-bold border border-white/30 bg-[#0e1523] rounded-full px-2 py-1">Total {roleFilter}: {filteredUsers?.length} Person</h2>
                     </div>
                 </div>
             </div>
