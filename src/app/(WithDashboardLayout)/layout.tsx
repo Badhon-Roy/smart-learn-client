@@ -48,12 +48,11 @@ const navItems = {
     ],
   
     admin: [
-      { label: 'Admin Dashboard', href: '/dashboard/admin', icon: <DashboardIcon /> },
+      { label: 'Admin Panel', href: '/dashboard/admin', icon: <DashboardIcon /> },
       { label: 'User Management', href: '/dashboard/admin/users', icon: <PeopleIcon /> },
       { label: 'Course Approvals', href: '/dashboard/admin/courses', icon: <AssignmentTurnedInIcon /> },
       { label: 'Payment Management', href: '/dashboard/admin/payments', icon: <MonetizationOnIcon /> },
       { label: 'Site Settings', href: '/dashboard/admin/settings', icon: <SettingsIcon /> },
-      { label: 'Admin Panel', href: '/dashboard/admin/control', icon: <AdminPanelSettingsIcon /> },
       { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
   };

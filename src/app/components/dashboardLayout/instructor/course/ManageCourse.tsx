@@ -81,109 +81,109 @@ const ManageCourse = ({ courses }: { courses: Course[] }) => {
         </Link>
       </div>
 
-      <div className="rounded-xl shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20">
-        {/* Responsive Scroll Wrapper */}
-        <div className="w-full overflow-x-auto">
-          <TableContainer sx={{ maxHeight: 600 }}>
-            <Table stickyHeader>
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      style={{
-                        minWidth: column.minWidth,
-                        fontWeight: 700,
-                        fontSize: "16px",
-                        backgroundColor: "#ffb500",
-                        color: "black",
-                        borderBottom: "1px solid rgba(255,255,255,0.2)",
-                      }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
+        <div className="rounded-xl shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20">
+          {/* Responsive Scroll Wrapper */}
+          <div className="w-full overflow-x-auto">
+            <TableContainer sx={{ maxHeight: 600 }}>
+              <Table stickyHeader>
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        style={{
+                          minWidth: column.minWidth,
+                          fontWeight: 700,
+                          fontSize: "16px",
+                          backgroundColor: "#ffb500",
+                          color: "black",
+                          borderBottom: "1px solid rgba(255,255,255,0.2)",
+                        }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
 
-              <TableBody>
-                {courses
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((course) => (
-                    <TableRow
-                      key={course._id}
-                      hover
-                      className="hover:bg-white/20 transition text-white"
-                    >
-                      <TableCell>
-                        {course.thumbnail ? (
-                          <Image
-                            src={course.thumbnail}
-                            alt={course.title}
-                            width={80}
-                            height={50}
-                            className="rounded-lg object-cover shadow-md"
-                          />
-                        ) : (
-                          <div className="w-20 h-[50px] bg-gray-700 rounded flex items-center justify-center text-white text-xs">
-                            No Image
+                <TableBody>
+                  {courses
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((course) => (
+                      <TableRow
+                        key={course._id}
+                        hover
+                        className="hover:bg-white/20 transition text-white"
+                      >
+                        <TableCell>
+                          {course.thumbnail ? (
+                            <Image
+                              src={course.thumbnail}
+                              alt={course.title}
+                              width={80}
+                              height={50}
+                              className="rounded-lg object-cover shadow-md"
+                            />
+                          ) : (
+                            <div className="w-20 h-[50px] bg-gray-700 rounded flex items-center justify-center text-white text-xs">
+                              No Image
+                            </div>
+                          )}
+                        </TableCell>
+                        <TableCell className="font-medium" style={{ color: "white" }}>
+                          {course?.title}
+                        </TableCell>
+                        <TableCell className="font-semibold " style={{ color: "#ffb500" }}>
+                          {course.price}৳
+                        </TableCell>
+                        <TableCell>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-bold shadow-md ${course.status === "Ongoing"
+                                ? "bg-green-500/20 text-green-300"
+                                : course.status === "Upcoming"
+                                  ? "bg-yellow-500/20 text-yellow-300"
+                                  : "bg-blue-500/20 text-blue-300"
+                              }`}
+                          >
+                            {course.status}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex gap-3">
+                            <button
+                              onClick={() => handleEdit(course?._id)}
+                              className="bg-blue-500/30 hover:bg-blue-500/50 text-blue-300 p-2 rounded-full transition cursor-pointer"
+                            >
+                              <EditNoteIcon fontSize="small" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(course?._id)}
+                              className="bg-red-500/30 hover:bg-red-500/50 text-red-300 p-2 rounded-full transition cursor-pointer"
+                            >
+                              <DeleteForeverIcon fontSize="small" />
+                            </button>
                           </div>
-                        )}
-                      </TableCell>
-                      <TableCell className="font-medium" style={{ color: "white" }}>
-                        {course?.title}
-                      </TableCell>
-                      <TableCell className="font-semibold " style={{ color: "#ffb500" }}>
-                        {course.price}৳
-                      </TableCell>
-                      <TableCell>
-                        <span
-                          className={`px-3 py-1 rounded-full text-sm font-bold shadow-md ${course.status === "Ongoing"
-                              ? "bg-green-500/20 text-green-300"
-                              : course.status === "Upcoming"
-                                ? "bg-yellow-500/20 text-yellow-300"
-                                : "bg-blue-500/20 text-blue-300"
-                            }`}
-                        >
-                          {course.status}
-                        </span>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-3">
-                          <button
-                            onClick={() => handleEdit(course?._id)}
-                            className="bg-blue-500/30 hover:bg-blue-500/50 text-blue-300 p-2 rounded-full transition cursor-pointer"
-                          >
-                            <EditNoteIcon fontSize="small" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(course?._id)}
-                            className="bg-red-500/30 hover:bg-red-500/50 text-red-300 p-2 rounded-full transition cursor-pointer"
-                          >
-                            <DeleteForeverIcon fontSize="small" />
-                          </button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
 
-        <div className="bg-white/10 backdrop-blur p-2">
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={courses.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            sx={{ color: "#fff" }}
-          />
+          <div className="bg-white/10 backdrop-blur p-2">
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={courses.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              sx={{ color: "#fff" }}
+            />
+          </div>
         </div>
-      </div>
     </div>
   );
 };
