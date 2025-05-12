@@ -7,7 +7,7 @@ import { Delete } from "@mui/icons-material";
 import { toast } from "sonner";
 import { createCourse } from "@/services/course";
 import { useRouter } from "next/navigation";
-import { IUser } from "@/types";
+import { ICategory, IUser } from "@/types";
 
 
 const courseSchema = z.object({
@@ -20,6 +20,7 @@ const courseSchema = z.object({
             subject: z.string().min(2, "Subject must be at least 2 characters"),
         })
     ),
+    category: z.string().min(5, "Category is required"),
     price: z.number().min(0),
     discountPrice: z.number().min(0).optional(),
     class: z.string().min(1),
@@ -48,7 +49,7 @@ const courseSchema = z.object({
 
 type CourseFormData = z.infer<typeof courseSchema>;
 
-const CreateCourseForm = ({ filterInstructors }: { filterInstructors: IUser[] }) => {
+const CreateCourseForm = ({ filterInstructors, allCategories }: { filterInstructors: IUser[], allCategories: ICategory[] }) => {
     const router = useRouter();
     const {
         register,
@@ -140,6 +141,18 @@ const CreateCourseForm = ({ filterInstructors }: { filterInstructors: IUser[] })
                         <option className="text-black" value="Beginner">Beginner</option>
                         <option className="text-black" value="Intermediate">Intermediate</option>
                         <option className="text-black" value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <div>
+                    <select {...register("category")} className="select select-bordered border rounded border-white/50 p-3 w-full">
+                        <option className="text-black" value="">Select Category</option>
+                        {
+                            allCategories?.map((category) => (
+                                <option className="text-black" key={category?._id} value={category?._id}>
+                                    {category?.name}
+                                </option>
+                            ))
+                        }
                     </select>
                 </div>
             </div>

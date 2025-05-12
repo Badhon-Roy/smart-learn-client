@@ -110,7 +110,7 @@ const ManageCategory = ({ categories }: { categories: Category[] }) => {
             <div className="rounded-xl shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20">
                 {/* Responsive Scroll Wrapper */}
                 <div className="w-full overflow-x-auto">
-                    <TableContainer sx={{ maxHeight: 600 }}>
+                    <TableContainer>
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>
@@ -144,10 +144,10 @@ const ManageCategory = ({ categories }: { categories: Category[] }) => {
                                             <TableCell>
                                                 {category.image ? (
                                                     <Image
-                                                        src={category.image}
-                                                        alt={category.name}
-                                                        width={80}
-                                                        height={50}
+                                                        src={category?.image}
+                                                        alt={category?.name}
+                                                        width={40}
+                                                        height={40}
                                                         className="rounded-lg object-cover shadow-md"
                                                     />
                                                 ) : (

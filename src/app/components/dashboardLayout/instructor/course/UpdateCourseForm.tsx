@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Delete } from "@mui/icons-material";
 import { useEffect } from "react";
-import { IUser } from "@/types";
+import { ICategory, IUser } from "@/types";
 import { toast } from "sonner";
 import { updateCourse } from "@/services/course";
 import { useRouter } from "next/navigation";
@@ -18,11 +18,11 @@ const courseSchema = z.object({
 
   instructors: z.array(
     z.object({
-      instructor: z.string().min(5, { message: "Instructor ID is required and must be at least 5 characters" }),
+      instructor: z.string().min(5, { message: "Instructor is required" }),
       subject: z.string().min(2, { message: "Subject must be at least 2 characters" }),
     })
   ).min(1, { message: "At least one instructor must be added" }),
-
+  category: z.string().min(5, { message: "Category is required" }),
   price: z.number().min(0, { message: "Price must be a positive number" }),
   discountPrice: z.number().min(0, { message: "Discount price must be a positive number" }).optional(),
 
@@ -64,9 +64,10 @@ type UpdateCourseFormProps = {
   courseId: string;
   courseData: CourseFormData;
   filterInstructors: IUser[];
+  allCategories: ICategory[]
 };
 
-const UpdateCourseForm = ({ courseId, courseData, filterInstructors }: UpdateCourseFormProps) => {
+const UpdateCourseForm = ({ courseId, courseData, filterInstructors,allCategories }: UpdateCourseFormProps) => {
   const router = useRouter();
 
   const {
@@ -160,12 +161,24 @@ const UpdateCourseForm = ({ courseId, courseData, filterInstructors }: UpdateCou
           </select>
           {errors && <p className="text-red-500">{errors?.classLevel?.message}</p>}
         </div>
+        <div>
+          <select {...register("category")} className="select select-bordered border rounded border-white/50 p-3 w-full">
+            <option className="text-black" value="">Select Category</option>
+            {
+              allCategories?.map((category) => (
+                <option className="text-black" key={category?._id} value={category?._id}>
+                  {category?.name}
+                </option>
+              ))
+            }
+          </select>
+        </div>
       </div>
 
       {/* Description */}
       <div>
         <textarea {...register("description")} placeholder="Description" className="textarea textarea-bordered border rounded border-white/50 w-full p-3" rows={4} />
-         {errors && <p className="text-red-500">{errors?.description?.message}</p>}
+        {errors && <p className="text-red-500">{errors?.description?.message}</p>}
       </div>
 
       {/* Subjects */}

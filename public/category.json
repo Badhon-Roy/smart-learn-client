@@ -1,0 +1,76 @@
+[  {
+    "name": "Academic Study",
+    "description": "Focused on core school and college subjects such as Math, Science, Literature, and History.",
+    "image": "https://cdn-icons-png.freepik.com/256/746/746980.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Language Learning",
+    "description": "Master new languages including English, Spanish, French, and more to enhance communication.",
+    "image": "https://cdn-icons-png.freepik.com/256/13852/13852345.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Freelancing",
+    "description": "Learn how to start freelancing, build portfolios, win projects, and grow a remote career.",
+    "image": "https://cdn-icons-png.freepik.com/256/2980/2980933.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Skills and IT",
+    "description": "Develop essential IT and digital skills to thrive in today's technology-driven world.",
+    "image": "https://cdn-icons-png.freepik.com/256/2019/2019314.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Design and Creative",
+    "description": "Explore graphic design, video editing, animation, and other creative tools and techniques.",
+    "image": "https://cdn-icons-png.freepik.com/256/15557/15557933.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Career Readiness",
+    "description": "Prepare for job markets with resume writing, interview skills, and soft skills training.",
+    "image": "https://cdn-icons-png.freepik.com/256/1313/1313228.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Digital Marketing",
+    "description": "Master SEO, social media, content marketing, email campaigns, and paid advertising.",
+    "image": "https://cdn-icons-png.freepik.com/256/1998/1998087.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Web Development",
+    "description": "Build responsive websites and web apps using HTML, CSS, JavaScript, and frameworks.",
+    "image": "https://cdn-icons-png.freepik.com/256/8004/8004161.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Business and Entrepreneurship",
+    "description": "Gain skills in business planning, startup launching, and managing small businesses.",
+    "image": "https://cdn-icons-png.freepik.com/256/11160/11160346.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Finance and Accounting",
+    "description": "Learn personal finance, business accounting, and investment fundamentals.",
+    "image": "https://cdn-icons-png.freepik.com/256/9202/9202712.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Microsoft Office Tools",
+    "description": "Get skilled in MS Word, Excel, PowerPoint, Outlook, and productivity tools.",
+    "image": "https://cdn-icons-png.freepik.com/256/2570/2570374.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Video and Animation",
+    "description": "Learn video editing, motion graphics, and 2D/3D animation using industry tools.",
+    "image": "https://cdn-icons-png.freepik.com/256/9453/9453453.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Soft Skills",
+    "description": "Improve communication, time management, leadership, and team collaboration.",
+    "image": "https://cdn-icons-png.freepik.com/256/4727/4727496.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Health and Wellness",
+    "description": "Courses on physical fitness, mental health, and overall well-being.",
+    "image": "https://cdn-icons-png.freepik.com/256/4486/4486599.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  },
+  {
+    "name": "Public Speaking",
+    "description": "Build confidence and clarity in public speaking and professional presentations.",
+    "image": "https://cdn-icons-png.freepik.com/256/2070/2070909.png?uid=R191150260&ga=GA1.1.2122364497.1742731770&semt=ais_hybrid"
+  }
+]
