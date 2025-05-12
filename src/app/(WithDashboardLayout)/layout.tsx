@@ -7,6 +7,7 @@ import {
     Menu as MenuIcon,
     Close as CloseIcon,
     Logout as LogoutIcon,
+    CategoryOutlined,
 } from '@mui/icons-material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
@@ -42,6 +43,7 @@ const navItems = {
       { label: 'Manage Course', href: '/dashboard/instructor/manage-course', icon: <UploadFileIcon /> },
       { label: 'Manage Content', href: '/dashboard/instructor/manage-content', icon: <UploadFileIcon /> },
       { label: 'Manage Quizzes', href: '/dashboard/instructor/manage-quizzes', icon: <QuizIcon /> },
+      { label: 'Manage Category', href: '/dashboard/instructor/manage-category', icon: <CategoryOutlined /> },
       { label: 'Track Performance', href: '/dashboard/instructor/performance', icon: <PeopleIcon /> },
       { label: 'Issue Certificates', href: '/dashboard/instructor/certificates', icon: <WorkspacePremiumIcon /> },
       { label: 'Home', href: '/', icon: <HomeIcon /> },
