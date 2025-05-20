@@ -12,7 +12,7 @@ const About = () => {
     };
     return (
         <div className=" bg-[#f2f4f7]">
-            <div className="flex justify-between items-center container mx-auto pt-72 pb-32">
+            <div className="flex justify-between items-center container mx-auto py-72">
                 <div className="relative flex-1">
                     <Image className="rounded-3xl" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/about-img-1-1.png" alt="about_banner_image" width={500} height={400} />
                     <Image className="absolute -bottom-20 right-30 rounded-t-full border-8 border-white" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/about-img-2-1.png" alt="about_banner_image" width={300} height={200} />

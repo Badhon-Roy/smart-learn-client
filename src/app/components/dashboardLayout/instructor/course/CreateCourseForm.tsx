@@ -22,6 +22,7 @@ const courseSchema = z.object({
     ),
     category: z.string().min(5, "Category is required"),
     price: z.number().min(0),
+    duration: z.string().min(1),
     discountPrice: z.number().min(0).optional(),
     class: z.string().min(1),
     subject: z.array(
@@ -134,6 +135,9 @@ const CreateCourseForm = ({ filterInstructors, allCategories }: { filterInstruct
                 </div>
                 <div>
                     <input {...register("class")} placeholder="Class Name" className="input input-bordered border rounded border-white/50 w-full p-3" />
+                </div>
+                <div>
+                    <input {...register("duration")} placeholder="Course Duration" className="input input-bordered border rounded border-white/50 w-full p-3" />
                 </div>
                 <div>
                     <select {...register("classLevel")} className="select select-bordered border rounded border-white/50 p-3 w-full">

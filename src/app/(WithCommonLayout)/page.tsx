@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/services/auth";
-import About from "../components/commonLayout/about/About";
-import Banner from "../components/commonLayout/banner/Banner";
+import About from "../components/commonLayout/home/about/About";
+import Banner from "../components/commonLayout/home/banner/Banner";
+import Category from "../components/commonLayout/home/category/Category";
 
 
 const HomePage = async() => {
@@ -10,6 +11,7 @@ const HomePage = async() => {
         <div>
            <Banner/>
            <About/>
+           <Category/>
         </div>
     );
 };

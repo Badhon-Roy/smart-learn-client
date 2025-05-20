@@ -25,7 +25,7 @@ const courseSchema = z.object({
   category: z.string().min(5, { message: "Category is required" }),
   price: z.number().min(0, { message: "Price must be a positive number" }),
   discountPrice: z.number().min(0, { message: "Discount price must be a positive number" }).optional(),
-
+  duration: z.string().min(1, { message: "Duration is required" }),
   class: z.string().min(1, { message: "Class is required" }),
 
   subject: z.array(
@@ -151,6 +151,10 @@ const UpdateCourseForm = ({ courseId, courseData, filterInstructors,allCategorie
         <div>
           <input {...register("class")} placeholder="Class Name" className="input input-bordered border rounded border-white/50 w-full p-3" />
           {errors && <p className="text-red-500">{errors?.class?.message}</p>}
+        </div>
+        <div>
+          <input {...register("duration")} placeholder="Course Duration" className="input input-bordered border rounded border-white/50 w-full p-3" />
+          {errors.duration && <p className="text-red-500">{errors?.duration?.message}</p>}
         </div>
         <div>
           <select {...register("classLevel")} className="select select-bordered border rounded border-white/50 w-full p-3">
