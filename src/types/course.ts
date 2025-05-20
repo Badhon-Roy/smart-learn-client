@@ -1,3 +1,4 @@
+import { ICategory } from "./category";
 import { IUser } from "./user";
 
 export interface ICourse {
@@ -15,6 +16,8 @@ export interface ICourse {
   subject: {
     name: string;
   }[];
+  category: ICategory;
+  duration?: string;
   classLevel: 'Beginner' | 'Intermediate' | 'Advanced';
   lessons: {
     title: string;
