@@ -6,6 +6,7 @@ import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 
 const FeatureCourses = async () => {
     const { data: courses } = await getAllCourse();
+    const filteredCourses = courses?.filter((course: ICourse) => course?.status === "Ongoing");
     return (
         <div className="bg-[#f2f4f7]">
             <div className="container mx-auto py-20">
@@ -17,7 +18,7 @@ const FeatureCourses = async () => {
                 </div>
                 <div className="grid grid-cols-4 gap-8 mt-8">
                     {
-                        courses?.slice(0, 8)?.map((course: ICourse) => (
+                        filteredCourses?.slice(0, 8)?.map((course: ICourse) => (
                             <CourseCard key={course?._id} course={course} />
                         ))
                     }

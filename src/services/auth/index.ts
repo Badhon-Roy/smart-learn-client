@@ -6,38 +6,38 @@ import { FieldValues } from "react-hook-form"
 import { jwtDecode } from "jwt-decode";
 import { revalidateTag } from "next/cache";
 
-export const registerUser = async(userData : FieldValues) =>{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users`,{
+export const registerUser = async (userData: FieldValues) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users`, {
         method: "POST",
         headers: {
-            'Content-Type' : "application/json"
+            'Content-Type': "application/json"
         },
         body: JSON.stringify(userData)
     })
     return res.json();
 }
-export const loginUser = async(userData : FieldValues) =>{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`,{
+export const loginUser = async (userData: FieldValues) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`, {
         method: "POST",
         headers: {
-            'Content-Type' : "application/json"
+            'Content-Type': "application/json"
         },
         body: JSON.stringify(userData)
     })
     const result = await res.json();
-    if(result.success){
+    if (result.success) {
         (await cookies()).set('accessToken', result.data.accessToken)
     }
     return result;
 }
 
-export const getCurrentUser = async()=>{
+export const getCurrentUser = async () => {
     const accessToken = (await cookies()).get('accessToken')?.value;
     let decodedData = null;
-    if(accessToken){
+    if (accessToken) {
         decodedData = await jwtDecode(accessToken)
         return decodedData;
-    }else{
+    } else {
         return null;
     }
 }
@@ -53,7 +53,7 @@ export const logout = async () => {
 
 export const getAllUser = async () => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users`, {
             next: {
                 tags: ["USER"]
             }
@@ -64,9 +64,9 @@ export const getAllUser = async () => {
         return Error(error)
     }
 }
-export const getSingleUser = async ({id} : {id: string}) => {
+export const getSingleUser = async ({ id }: { id: string }) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`, {
             next: {
                 tags: ["USER"]
             }
@@ -78,9 +78,9 @@ export const getSingleUser = async ({id} : {id: string}) => {
     }
 }
 
-export const updateUser = async (id: string , data: FieldValues) => {
+export const updateUser = async (id: string, data: FieldValues) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ export const updateUser = async (id: string , data: FieldValues) => {
 
 export const deleteUser = async (id: string) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -110,3 +110,24 @@ export const deleteUser = async (id: string) => {
         return Error(error);
     }
 };
+
+
+export const updateUserRole = async (id: string, role: 'admin' | 'student' | 'instructor') => {
+    const accessToken = (await cookies()).get('accessToken')?.value;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/update-role/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                ...(accessToken && { Authorization: `${accessToken}` })
+            },
+            body: JSON.stringify({ role })
+        });
+        revalidateTag("USER")
+        const result = await res.json();
+        return result;
+    }
+    catch (error: any) {
+        return Error(error);
+    }
+}

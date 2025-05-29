@@ -135,3 +135,23 @@ export const deleteCourse = async (id: string) => {
         return Error(error)
     }
 }
+
+export const updateCourseStatus = async (id: string, status:  "Ongoing" | "Upcoming" | "Completed") => {
+    const accessToken = (await cookies()).get('accessToken')?.value;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/courses/status/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                ...(accessToken && { Authorization: `${accessToken}` })
+            },
+            body: JSON.stringify({ status })
+        });
+        revalidateTag("COURSE")
+        const result = await res.json();
+        return result;
+    }
+    catch (error: any) {
+        return Error(error);
+    }
+}

@@ -14,7 +14,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { toast } from "sonner";
-import { deleteUser } from "@/services/auth";
+import { deleteUser, updateUserRole } from "@/services/auth";
+import { Divider, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import SchoolIcon from '@mui/icons-material/School';
+import PersonIcon from '@mui/icons-material/Person';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 interface User {
     _id: string;
@@ -56,6 +60,15 @@ const ManageUsers = ({ users }: { users: User[] }) => {
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "student" | "instructor" | "admin">("all");
 
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const openDropdown = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleDropdownClose = () => {
+        setAnchorEl(null);
+    };
+
     const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -75,10 +88,25 @@ const ManageUsers = ({ users }: { users: User[] }) => {
         setPage(0);
     };
 
+
     const handleModalClose = () => {
         setOpen(false);
         setSelectedUser(null);
     };
+
+    const handleRoleUpdate = async (role: 'admin' | 'student' | 'instructor') => {
+        const toastLoading = toast.loading("Updating...")
+        try {
+            const res = await updateUserRole(selectedUser?._id as string ,role)
+            if (res.success) {
+                toast.success(res.message, { id: toastLoading })
+            } else if (res.err) {
+                toast.error(res?.message || "Something went wrong!", { id: toastLoading })
+            }
+        } catch (error: any) {
+            toast.error(error.message, { id: toastLoading })
+        }
+    }
 
     const handleDelete = async () => {
         if (!selectedUser) return;
@@ -196,9 +224,13 @@ const ManageUsers = ({ users }: { users: User[] }) => {
 
                                             {/* Role Badge */}
                                             <TableCell>
-                                                <span
-                                                    className={`px-3 py-1 rounded-full text-xs font-semibold shadow-md
-                            ${user?.role === "admin"
+                                                <button
+                                                    onClick={(event) => {
+                                                        handleClick(event);
+                                                        setSelectedUser(user);
+                                                    }}
+                                                    className={`px-3 py-1 rounded-full text-xs cursor-pointer font-semibold shadow-md
+            ${user?.role === "admin"
                                                             ? "bg-red-100 text-red-600"
                                                             : user?.role === "instructor"
                                                                 ? "bg-indigo-100 text-indigo-600"
@@ -206,8 +238,67 @@ const ManageUsers = ({ users }: { users: User[] }) => {
                                                         }`}
                                                 >
                                                     {user?.role}
-                                                </span>
+                                                </button>
+
+                                                <Menu
+                                                    anchorEl={anchorEl}
+                                                    open={openDropdown}
+                                                    onClose={handleDropdownClose}
+                                                    onClick={handleDropdownClose}
+                                                    PaperProps={{
+                                                        elevation: 4,
+                                                        sx: {
+                                                            mt: 1.5,
+                                                            minWidth: 200,
+                                                            borderRadius: 2,
+                                                            overflow: 'visible',
+                                                            color: '#fff',
+                                                            backgroundColor: '#0e1523',
+                                                            boxShadow: '0px 10px 25px rgba(0,0,0,0.4)',
+                                                            '& .MuiMenuItem-root': {
+                                                                paddingY: 1.2,
+                                                                fontSize: '0.95rem',
+                                                                fontWeight: 500,
+                                                                transition: 'all 0.2s ease-in-out',
+                                                                borderRadius: 1,
+                                                                '&:hover': {
+                                                                    backgroundColor: '#1a2235',
+                                                                    color: '#00ffff',
+                                                                    textShadow: '0 0 5px #00ffff',
+                                                                },
+                                                            },
+                                                        },
+                                                    }}
+                                                >
+                                                    <Typography className="px-4 pt-3 pb-1 text-gray-300 text-sm font-medium">
+                                                        Select Role
+                                                    </Typography>
+                                                    <Divider sx={{ borderColor: '#1f2937' }} />
+
+                                                    <MenuItem onClick={() => handleRoleUpdate('student')}>
+                                                        <ListItemIcon sx={{ color: '#00ffff', minWidth: '36px' }}>
+                                                            <PersonIcon fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Student
+                                                    </MenuItem>
+
+                                                    <MenuItem onClick={() => handleRoleUpdate('instructor')}>
+                                                        <ListItemIcon sx={{ color: '#00ffff', minWidth: '36px' }}>
+                                                            <SchoolIcon fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Instructor
+                                                    </MenuItem>
+
+                                                    <MenuItem onClick={() => handleRoleUpdate('admin')}>
+                                                        <ListItemIcon sx={{ color: '#00ffff', minWidth: '36px' }}>
+                                                            <AdminPanelSettingsIcon fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Admin
+                                                    </MenuItem>
+                                                </Menu>
+
                                             </TableCell>
+
 
                                             {/* Action */}
                                             <TableCell>
