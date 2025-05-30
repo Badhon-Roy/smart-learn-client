@@ -7,7 +7,7 @@ const Banner = () => {
             <Image className="absolute left-20 -bottom-25 z-20" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/hero-men-1-1.png" alt="Banner_image" width={500} height={400}></Image>
             <Image className="absolute right-20 -bottom-25 z-20" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/hero-men-2.png" alt="Banner_image" width={500} height={400}></Image>
 
-            <div className="absolute left-0 -top-10 z-10 md:h-[450px] h-[250px] w-[240px] md:w-[430px] rotate-45 bg-gradient-to-l from-[#07e0cb] to-cyan-400 opacity-30 blur-[150px] filter dark:opacity-50"></div>
+            <div className="absolute left-0 top-15 z-10 md:h-[450px] h-[250px] w-[240px] md:w-[430px] rotate-45 bg-gradient-to-l from-[#07e0cb] to-cyan-400 opacity-30 blur-[150px] filter dark:opacity-50"></div>
             <div className="absolute right-0 -bottom-10 z-10 md:h-[450px] h-[250px] w-[240px] md:w-[430px] rotate-45 bg-gradient-to-l from-[#07e0cb] to-cyan-400 opacity-30 blur-[150px] filter dark:opacity-50"></div>
 
             <div className="absolute -bottom-25 left-0 w-full h-[100px] bg-[#1f2b2a] rounded-b-full"></div>

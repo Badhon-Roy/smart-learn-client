@@ -1,103 +1,262 @@
-"use client";
+'use client';
 
-import { useUser } from '@/context/UserContext';
+import React, { useEffect, useState } from 'react';
+import {
+    Toolbar,
+    IconButton,
+    Drawer,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Box,
+    Avatar,
+    useTheme,
+    useMediaQuery,
+    Divider,
+    Typography,
+    Menu,
+    MenuItem,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import SchoolIcon from '@mui/icons-material/School';
+import GroupsIcon from '@mui/icons-material/Groups';
+import LanguageIcon from '@mui/icons-material/Language';
+import BookIcon from '@mui/icons-material/Book';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Avatar, Menu, MenuItem, IconButton } from '@mui/material';
-import { useState } from 'react';
+import Image from 'next/image';
+import Logo from '@/assets/images/logo.png';
+import { useUser } from '@/context/UserContext';
 import { logout } from '@/services/auth';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+const navLinks = [
+    { title: 'Home', href: '/', icon: <HomeIcon /> },
+    { title: 'Courses', href: '/courses', icon: <SchoolIcon /> },
+    { title: 'Online Batch', href: '/online-batch', icon: <GroupsIcon /> },
+    { title: 'English Center', href: '/english-center', icon: <LanguageIcon /> },
+    { title: 'My Learning', href: '/my-learning', icon: <BookIcon /> },
+];
 
 const Navbar = () => {
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const pathname = usePathname();
-    const { user, setIsLoading } = useUser();
-
-    const menus = [
-        { title: 'Home', href: '/' },
-        { title: 'Courses', href: '/courses' },
-        { title: 'Online Batch', href: '/online-batch' },
-        { title: 'English Center', href: '/english-center' },
-    ];
-
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const { user, setIsLoading } = useUser();
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+
+    const isActive = (href: string) => pathname === href;
+    const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+
+
+
+    useEffect(() => {
+    if (!isMobile && drawerOpen) {
+        setDrawerOpen(false);
+    }
+}, [isMobile, drawerOpen]);
+
+    const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    const handleLogOut = () => {
+    const handleLogout = () => {
         logout();
-        setIsLoading(true)
-    }
+        setIsLoading(true);
+        handleMenuClose();
+    };
 
     return (
-        <section className='bg-white shadow-md'>
-            <nav className="container mx-auto flex items-center justify-between px-6 py-3">
-                {/* Logo */}
-                <div className="flex items-center gap-3">
-                    <h2 className='text-lg font-bold text-red-500'>
-                        <span className='text-3xl'>Smart</span>Learn
-                    </h2>
-                </div>
+        <>
+            <div
+                className="sticky top-0 z-50 border-b border-white/20"
+                style={{
+                    background: 'linear-gradient(90deg, #0f2027, #203a43, #2c5364)',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+                }}
+            >
+                <Toolbar className="container mx-auto flex justify-between items-center py-3">
+                    <Link href="/" passHref>
+                        <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
+                    </Link>
 
-                {/* Search bar */}
-                <div className="flex-1 max-w-xl mx-4 relative">
-                    <input
-                        type="text"
-                        placeholder="স্কিলস কোর্স, স্কুল প্রোগ্রাম সার্চ করুন..."
-                        className="w-full pl-10 pr-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#f87652]"
-                    />
-                </div>
+                    {!isMobile ? (
+                        <Box sx={{ display: 'flex', gap: 3 }}>
+                            {navLinks.map((link) => (
+                                <Link key={link.href} href={link.href} passHref>
+                                    <Box
+                                        sx={{
+                                            position: 'relative',
+                                            color: isActive(link.href) ? '#07a698' : '#ffffffcc',
+                                            fontWeight: isActive(link.href) ? 700 : 500,
+                                            px: 1,
+                                            py: 0.5,
+                                            cursor: 'pointer',
+                                            letterSpacing: '0.5px',
+                                            transition: 'all 0.3s ease',
+                                            '&::after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                bottom: -2,
+                                                left: 0,
+                                                width: isActive(link.href) ? '100%' : 0,
+                                                height: '2px',
+                                                backgroundColor: '#07a698',
+                                                transition: 'width 0.3s ease',
+                                            },
+                                            '&:hover::after': {
+                                                width: '100%',
+                                            },
+                                        }}
+                                    >
+                                        {link.title}
+                                    </Box>
+                                </Link>
+                            ))}
+                        </Box>
+                    ) : (
+                        <IconButton onClick={toggleDrawer}>
+                            <MenuIcon sx={{ color: '#fff' }} />
+                        </IconButton>
+                    )}
 
-                {/* Menus */}
-                <div className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-700">
-                    {menus.map((menu, i) => {
-                        const isActive = pathname === menu.href;
-                        return (
-                            <Link key={i} href={menu.href} passHref>
-                                <div className={`cursor-pointer hover:text-[#f87652] ${isActive ? 'text-[#f87652] underline underline-offset-4' : ''}`}>
-                                    {menu.title}
-                                </div>
+
+                    {!isMobile && (
+                        user ? (
+                            <>
+                                <IconButton onClick={handleAvatarClick}>
+                                    <Avatar
+                                        className='border-2 border-white/80'
+                                        alt={user.name || 'User Avatar'}
+                                        src={
+                                            user.photo ||
+                                            'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png'
+                                        }
+                                    />
+                                </IconButton>
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    onClick={handleClose}
+                                    PaperProps={{
+                                        elevation: 5,
+                                        sx: {
+                                            mt: 1.5,
+                                            minWidth: 200,
+                                            borderRadius: 2,
+                                            backgroundColor: '#0e1523',
+                                            color: 'white',
+                                            backdropFilter: 'blur(10px)',
+                                        },
+                                    }}
+                                >
+                                    <MenuItem
+                                        component={Link}
+                                        href={`/dashboard/${user?.role}`}
+                                        className="hover:bg-white/10"
+                                    >
+                                        <ListItemIcon>
+                                            <DashboardIcon fontSize="small" sx={{ color: 'white' }} />
+                                        </ListItemIcon>
+                                        Dashboard
+                                    </MenuItem>
+
+                                    <MenuItem
+                                        component={Link}
+                                        href="/profile"
+                                        className="hover:bg-white/10"
+                                    >
+                                        <ListItemIcon>
+                                            <PersonIcon fontSize="small" sx={{ color: 'white' }} />
+                                        </ListItemIcon>
+                                        Profile
+                                    </MenuItem>
+
+                                    <Divider sx={{ borderColor: 'white', opacity: 0.1 }} />
+
+                                    <MenuItem onClick={handleLogout} className="hover:bg-white/10">
+                                        <ListItemIcon>
+                                            <LogoutIcon fontSize="small" sx={{ color: 'white' }} />
+                                        </ListItemIcon>
+                                        Logout
+                                    </MenuItem>
+                                </Menu>
+                            </>
+                        ) : (
+                            <Link href="/login" passHref>
+                                <Typography variant="h6" color="#fff" sx={{ cursor: 'pointer' }}>
+                                    Login
+                                </Typography>
                             </Link>
-                        );
-                    })}
-                </div>
+                        )
+                    )}
 
-                {/* Auth Section */}
-                <div>
-                    {user ? (
-                        <>
-                            <IconButton onClick={handleClick}>
-                                <Avatar alt={'User'} src={user?.photo || 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png'} />
-                            </IconButton>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                onClick={handleClose}
-                                PaperProps={{
-                                    elevation: 3,
-                                    sx: {
-                                        mt: 1.5,
-                                        minWidth: 180,
+                </Toolbar>
+            </div>
+
+            {/* Mobile Drawer */}
+            <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={toggleDrawer}
+                PaperProps={{
+                    sx: {
+                        width: '100vw',
+                        maxWidth: 320,
+                        backgroundColor: '#0e1523',
+                    },
+                }}
+            >
+                <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+                    {user && <Avatar
+                        className='border-2 border-white/80'
+                        alt={user?.name || 'User Avatar'}
+                        src={
+                            user?.photo ||
+                            'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png'
+                        }
+                    />}
+                    <Typography variant="h6" color="#fff">Welcome</Typography>
+                </Box>
+                <Divider sx={{ bgcolor: '#374151', mb: 1 }} />
+
+                <List>
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href} passHref>
+                            <ListItemButton
+                                onClick={toggleDrawer}
+                                sx={{
+                                    color: isActive(link.href) ? '#07a698' : '#ffffffcc',
+                                    fontWeight: isActive(link.href) ? 600 : 400,
+                                    '&:hover': {
+                                        backgroundColor: '#374151',
                                     },
                                 }}
                             >
-                                <MenuItem component={Link} href={`/dashboard/${user?.role}`}>Dashboard</MenuItem>
-                                <MenuItem component={Link} href="/profile">Profile</MenuItem>
-                                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
-                            </Menu>
-                        </>
-                    ) : (
-                        <Link href='/login'>
-                            <button className="px-4 py-1 bg-[#f87652] text-white rounded-full hover:bg-[#f7643c]">Login</button>
+                                <ListItemIcon sx={{ color: '#07a698' }}>
+                                    {link.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={link.title} />
+                            </ListItemButton>
                         </Link>
-                    )}
-                </div>
-            </nav>
-        </section>
+                    ))}
+                </List>
+            </Drawer>
+        </>
     );
 };
 
