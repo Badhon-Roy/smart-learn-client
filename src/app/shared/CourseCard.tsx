@@ -2,6 +2,7 @@ import Image from "next/image";
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import { ICourse } from "@/types";
+import Link from "next/link";
 
 const CourseCard = ({ course }: { course: ICourse }) => {
     const { _id, thumbnail, title, duration,status, studentsEnrolled
@@ -59,9 +60,11 @@ const CourseCard = ({ course }: { course: ICourse }) => {
                 ) : (
                     <p className="text-lg font-bold text-[#07a698]">৳{price}</p>
                 )}
+                <Link href={`/courses/${_id}`}>
                 <button className="border border-gray-300 rounded-full px-3 py-1 font-medium hover:border-[#07a698] cursor-pointer">
                     View Details
                 </button>
+                </Link>
             </div>
         </div>
     );

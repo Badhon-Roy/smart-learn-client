@@ -38,7 +38,7 @@ const AllCourses = ({
                 return (
                     <div key={category?._id} className="mb-8">
                         <h2 className="text-xl font-semibold mb-4 text-primary">
-                            {category?.name}
+                            {category?.name} <span className="text-gray-500 text-sm">({categoryCourses?.length} Courses)</span>
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             {categoryCourses?.slice(0, 4)?.map((course) => (
