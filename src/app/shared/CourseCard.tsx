@@ -21,10 +21,10 @@ const CourseCard = ({ course }: { course: ICourse }) => {
                 </div>
                 <div className="mt-4">
                     <p className="bg-[#07a6992a] inline-block px-3 py-1 text-sm rounded-full text-[#07a698] font-bold">{category?.name}</p>
-                    <h2 className="my-3 text-[22px] font-semibold">{title}</h2>
+                    <h2 className="my-3 text-[18px] md:text-[22px] font-semibold">{title}</h2>
 
                     <div className="flex justify-between items-center">
-                        <p>Class/Dept: {course?.class}</p>
+                        <p className="md:text-[16px] text-sm">Class/Dept: {course?.class}</p>
                         <p className="text-sm text-gray-300">
                             <span
                                 className={`px-3 py-1 rounded-full text-sm font-bold shadow-md ${status === "Ongoing"
