@@ -6,7 +6,7 @@ import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 
 const OngoingCourses = async () => {
     const { data: courses } = await getAllCourse();
-    const filteredCourses = courses?.filter((course: ICourse) => course?.status === "Ongoing");
+    const filteredCourses = courses?.filter((course: ICourse) => course?.status === "Ongoing" && course?.isApproved === true );
     return (
         <div className="bg-[#f2f4f7] md:px-0 px-4">
             <div className="container mx-auto py-20">
