@@ -19,15 +19,28 @@ import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CourseCard from "@/app/shared/CourseCard";
+import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 const CourseDetails = ({ course, filterCourse }: { course: ICourse, filterCourse: ICourse[] }) => {
     const { title, thumbnail, category, description, duration, price, discountPrice, classLevel, instructors, subject, faqs, rating = 5, reviews, whatYouWillLearn, status, studentsEnrolled } = course;
+    const {user} = useUser();
+    const router = useRouter();
     const [expanded, setExpanded] = useState<string | false>(false);
 
     const handleChange =
         (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
             setExpanded(isExpanded ? panel : false);
         };
+
+    const handleEnroll = () => {
+        if(!user){
+            router.push('/login');
+        }else{
+            localStorage.setItem('courseId', course?._id || '');
+            router.push('/checkout');
+        }
+    }
 
     const renderStars = (rating: number) => {
         const stars = [];
@@ -230,7 +243,7 @@ const CourseDetails = ({ course, filterCourse }: { course: ICourse, filterCourse
                     </div>
 
                 </div>
-                <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md h-full border border-gray-300">
+                <div className="w-full md:w-1/3 sticky top-32 bg-white p-6 rounded-lg shadow-md h-full border border-gray-300">
                     <Image className="w-full h-[200px] object-cover rounded-lg mb-4" src={thumbnail} alt="course-thumbnail" width={500} height={300} />
                     <div className="mb-4">
                         {discountPrice ? (
@@ -242,7 +255,7 @@ const CourseDetails = ({ course, filterCourse }: { course: ICourse, filterCourse
                             <p className="text-2xl font-bold text-[#07a698]">৳{price}</p>
                         )}
                     </div>
-                    <button className="bg-[#07a698] text-white font-bold px-8 py-4 rounded-lg w-full">Enroll now</button>
+                    <button onClick={handleEnroll} className="bg-[#07a698] text-white cursor-pointer font-bold px-8 py-4 rounded-lg w-full">Enroll now</button>
                     <div className="space-y-3 my-4">
                         <h2 className="font-medium">এই কোর্সে যা থাকছে</h2>
                         <div className="flex items-center gap-2">
