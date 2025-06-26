@@ -14,7 +14,7 @@ import { useUser } from "@/context/UserContext";
 const Checkout = () => {
     const [course, setCourse] = useState<ICourse | null>(null);
     const router = useRouter();
-    const {user} = useUser();
+    const { user } = useUser();
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -29,10 +29,10 @@ const Checkout = () => {
     }, []);
 
     const handlePlaceOrder = () => {
-        if(!user){
+        if (!user) {
             router.push("/login");
         }
-       router.push("/payment");
+        router.push(`/payment/${course?._id}`);
     };
 
     if (!course) {
@@ -67,7 +67,7 @@ const Checkout = () => {
                 height={50}
             />
 
-            <div className="max-w-6xl mx-auto overflow-hidden p-6 md:p-10 transition-all">
+            <div className="max-w-6xl mx-auto p-6 md:p-10 transition-all">
                 <h2 className="text-4xl font-extrabold text-center text-[#07a698] mb-10">Confirm Your Enrollment</h2>
 
                 <div className="grid md:grid-cols-2 gap-10">
