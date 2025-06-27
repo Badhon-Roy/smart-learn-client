@@ -29,12 +29,12 @@ import { logout } from '@/services/auth';
 const navItems = {
     student: [
       { label: 'Dashboard', href: '/dashboard/student', icon: <DashboardIcon /> },
-      { label: 'Browse Courses', href: '/dashboard/courses', icon: <ClassIcon /> },
+      { label: 'Browse Courses', href: '/courses', icon: <ClassIcon /> },
       { label: 'My Courses', href: '/dashboard/student/my-courses', icon: <PlayCircleIcon /> },
-      { label: 'Assignments', href: '/student/assignments', icon: <AssignmentTurnedInIcon /> },
-      { label: 'Quizzes', href: '/student/quizzes', icon: <QuizIcon /> },
-      { label: 'Certificates', href: '/student/certificates', icon: <WorkspacePremiumIcon /> },
-      { label: 'Progress', href: '/student/progress', icon: <SettingsIcon /> },
+      { label: 'Assignments', href: '/dashboard/student/assignments', icon: <AssignmentTurnedInIcon /> },
+      { label: 'Quizzes', href: '/dashboard/student/quizzes', icon: <QuizIcon /> },
+      { label: 'Certificates', href: '/dashboard/student/certificates', icon: <WorkspacePremiumIcon /> },
+      { label: 'Progress', href: '/dashboard/student/progress', icon: <SettingsIcon /> },
       { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
   

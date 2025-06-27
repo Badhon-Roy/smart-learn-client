@@ -41,9 +41,9 @@ const MyCourses = () => {
                         {userData.enrolledCourses.map((course: ICourse) => (
                             <div
                                 key={course._id}
-                                className="flex gap-6 p-5 border border-white/10 rounded-2xl shadow-lg bg-gradient-to-br from-[#0e1523] to-[#1a2437] hover:shadow-2xl transition duration-300"
+                                className="md:flex gap-6 p-5 border border-white/10 rounded-2xl shadow-lg bg-gradient-to-br from-[#0e1523] to-[#1a2437] hover:shadow-2xl transition duration-300"
                             >
-                                <div className="w-1/3">
+                                <div className="md:w-1/3">
                                     <Image
                                         className="w-full h-[200px] object-cover rounded-xl transition duration-300 hover:scale-105"
                                         src={course?.thumbnail}
@@ -52,7 +52,7 @@ const MyCourses = () => {
                                         height={300}
                                     />
                                 </div>
-                                <div className="w-2/3">
+                                <div className="md:w-2/3 mt-4 lg:mt-0">
                                     <h2 className="text-2xl font-bold text-white">{course?.title}</h2>
                                     <p className="text-md font-medium text-gray-400 mt-2 mb-4">Smart Learn</p>
                                     <button onClick={()=>handleContinueCourse(course?._id as string)} className="bg-[#07A698] cursor-pointer transition px-5 py-2 rounded-full text-white font-semibold shadow-md">

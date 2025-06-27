@@ -39,7 +39,7 @@ const navLinks = [
     { title: 'Courses', href: '/courses', icon: <SchoolIcon /> },
     { title: 'Online Batch', href: '/online-batch', icon: <GroupsIcon /> },
     { title: 'English Center', href: '/english-center', icon: <LanguageIcon /> },
-    { title: 'My Learning', href: '/my-learning', icon: <BookIcon /> },
+    { title: 'My Learning', href: '/dashboard/student/my-courses', icon: <BookIcon /> },
 ];
 
 const Navbar = () => {

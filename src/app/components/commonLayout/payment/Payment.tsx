@@ -25,7 +25,7 @@ const Payment = ({ course }: { course: ICourse }) => {
       mobile: data?.mobile,
       courseId: _id
     }
-    const toastLoading = toast.loading("Logging...")
+    const toastLoading = toast.loading("Paying...")
     try {
       const res = await createOrder(modifyData)
       console.log(res);
