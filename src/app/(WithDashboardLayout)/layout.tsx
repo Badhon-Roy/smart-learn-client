@@ -28,9 +28,9 @@ import { logout } from '@/services/auth';
 
 const navItems = {
     student: [
-      { label: 'Dashboard', href: '/dashboard', icon: <DashboardIcon /> },
-      { label: 'Browse Courses', href: '/courses', icon: <ClassIcon /> },
-      { label: 'My Courses', href: '/student/courses', icon: <PlayCircleIcon /> },
+      { label: 'Dashboard', href: '/dashboard/student', icon: <DashboardIcon /> },
+      { label: 'Browse Courses', href: '/dashboard/courses', icon: <ClassIcon /> },
+      { label: 'My Courses', href: '/dashboard/student/my-courses', icon: <PlayCircleIcon /> },
       { label: 'Assignments', href: '/student/assignments', icon: <AssignmentTurnedInIcon /> },
       { label: 'Quizzes', href: '/student/quizzes', icon: <QuizIcon /> },
       { label: 'Certificates', href: '/student/certificates', icon: <WorkspacePremiumIcon /> },
