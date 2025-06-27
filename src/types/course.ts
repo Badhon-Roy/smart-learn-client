@@ -2,7 +2,7 @@ import { ICategory } from "./category";
 import { IUser } from "./user";
 
 export interface ICourse {
-    _id?: string;
+  _id?: string;
   thumbnail: string;
   title: string;
   description: string;
@@ -40,4 +40,11 @@ export interface ICourse {
     answer: string;
   }[];
   status: "Ongoing" | "Upcoming" | "Completed";
+}
+
+export interface ILessons {
+  title: string;
+  videoUrl: string;
+  isView: boolean;
+  duration?: string;
 }

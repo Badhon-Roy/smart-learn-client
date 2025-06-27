@@ -5,10 +5,12 @@ import { useUser } from "@/context/UserContext";
 import { getSingleUser } from "@/services/auth";
 import { ICourse, IUser } from "@/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const MyCourses = () => {
     const { user } = useUser();
     const [userData, setUserData] = useState<IUser | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -25,6 +27,10 @@ const MyCourses = () => {
 
         fetchUserData();
     }, [user?.userId]);
+
+    const handleContinueCourse = (id : string)=>{
+        router.push(`/dashboard/student/my-courses/${id}`);
+    }
 
     return (
         <div>
@@ -49,7 +55,7 @@ const MyCourses = () => {
                                 <div className="w-2/3">
                                     <h2 className="text-2xl font-bold text-white">{course?.title}</h2>
                                     <p className="text-md font-medium text-gray-400 mt-2 mb-4">Smart Learn</p>
-                                    <button className="bg-[#07A698] cursor-pointer transition px-5 py-2 rounded-full text-white font-semibold shadow-md">
+                                    <button onClick={()=>handleContinueCourse(course?._id as string)} className="bg-[#07A698] cursor-pointer transition px-5 py-2 rounded-full text-white font-semibold shadow-md">
                                         Continue Course
                                     </button>
                                 </div>
