@@ -12,7 +12,7 @@ const About = () => {
     };
     return (
         <div className=" bg-[#f2f4f7]">
-            <div className="md:flex justify-between items-center container mx-auto md:pt-72 pt-64 pb-32 md:px-0 px-4">
+            <div className="md:flex justify-between items-center container mx-auto md:pt-72 pt-64 pb-32 md:px-0 px-4 gap-6">
                 <div className="md:hidden flex justify-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4 mb-8">
                         <h3 className="flex items-center gap-2"><span className="bg-[#07a6992a] w-6 h-6 p-1 flex items-center justify-center rounded-full"><BoltOutlinedIcon className="text-[#07a698]" /></span> About Company</h3>
@@ -20,7 +20,7 @@ const About = () => {
                 </div>
                 <div className="relative flex-1">
                     <Image className="rounded-3xl md:h-[400px] h-[200px] object-cover" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/about-img-1-1.png" alt="about_banner_image" width={500} height={400} />
-                    <Image className="md:h-[200px] h-[140px] md:w-[300px] w-[140px] absolute -bottom-10 md:-bottom-20 md:right-30 right-10 rounded-t-full border-4 md:border-8 border-white" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/about-img-2-1.png" alt="about_banner_image" width={300} height={200} />
+                    <Image className="lg:h-[300px] md:h-[200px] h-[140px] md:w-[300px] w-[140px] absolute -bottom-10 md:-bottom-20 md:right-30 right-10 rounded-t-full border-4 md:border-8 border-white" src="https://wp.rrdevs.net/edcare/wp-content/uploads/2025/02/about-img-2-1.png" alt="about_banner_image" width={300} height={200} />
 
                 </div>
                 <div className="flex-1">

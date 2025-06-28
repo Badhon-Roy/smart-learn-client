@@ -1,13 +1,11 @@
-import CourseCard from "@/app/shared/CourseCard";
-import { getAllCourse } from "@/services/course";
+"use client"
 import { ICourse } from "@/types";
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import Image from "next/image";
 
 
-const UpcomingCourses = async () => {
-    const { data: courses } = await getAllCourse();
-    const filteredCourses = courses?.filter((course: ICourse) => course?.status === "Upcoming");
+const UpcomingCourses = ({filteredCourses} : {filteredCourses : ICourse[]}) => {
+   
     return (
         <div className="bg-[#f2f4f7] md:px-0 px-4">
             <div className="container mx-auto py-20 lg:w-2/3">

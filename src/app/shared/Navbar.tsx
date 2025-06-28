@@ -33,6 +33,7 @@ import { logout } from '@/services/auth';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { toast } from 'sonner';
 
 const navLinks = [
     { title: 'Home', href: '/', icon: <HomeIcon /> },
@@ -48,19 +49,18 @@ const Navbar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const { user, setIsLoading } = useUser();
+    const { user, setUser, setIsLoading } = useUser();
     const open = Boolean(anchorEl);
 
     const isActive = (href: string) => pathname === href;
     const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
 
-
     useEffect(() => {
-    if (!isMobile && drawerOpen) {
-        setDrawerOpen(false);
-    }
-}, [isMobile, drawerOpen]);
+        if (!isMobile && drawerOpen) {
+            setDrawerOpen(false);
+        }
+    }, [isMobile, drawerOpen]);
 
     const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -73,8 +73,10 @@ const Navbar = () => {
         setAnchorEl(null);
     };
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = async () => {
+        await logout();
+        toast.success("Logout Successfull");
+        setUser(null);
         setIsLoading(true);
         handleMenuClose();
     };
@@ -254,6 +256,53 @@ const Navbar = () => {
                             </ListItemButton>
                         </Link>
                     ))}
+
+                    <Link key="dashboard" href={`/dashboard/${user?.role}`} passHref>
+                        <ListItemButton
+                            onClick={toggleDrawer}
+                            sx={{
+                                color: isActive(`/dashboard/${user?.role}`) ? '#07a698' : '#ffffffcc',
+                                fontWeight: isActive(`/dashboard/${user?.role}`) ? 600 : 400,
+                                '&:hover': {
+                                    backgroundColor: '#374151',
+                                },
+                            }}
+                        >
+                            <ListItemIcon sx={{ color: '#07a698' }}>
+                                <DashboardIcon fontSize="small" sx={{ color: 'white' }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
+                        </ListItemButton>
+                    </Link>
+                    <Box
+                        onClick={() => {
+                            handleLogout();
+                            toggleDrawer();
+                        }}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            px: 2,
+                            py: 1,
+                            cursor: 'pointer',
+                            color: '#ffffffcc',
+                            fontWeight: 500,
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                backgroundColor: '#374151',
+                            },
+                        }}
+                    >
+                        <ListItemIcon sx={{ minWidth: 32, marginRight: '17px' }}>
+                            <LogoutIcon fontSize="small" sx={{ color: 'white' }} />
+                        </ListItemIcon>
+                        <Typography variant="body1" sx={{ color: '#ffffffcc' }}>
+                            Logout
+                        </Typography>
+                    </Box>
+
+
                 </List>
             </Drawer>
         </>

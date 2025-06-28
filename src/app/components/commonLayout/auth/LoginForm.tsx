@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import Logo from "@/assets/images/logo.png";
+import { useUser } from '@/context/UserContext';
 
 type FormValues = {
     email: string;
@@ -15,43 +17,45 @@ type FormValues = {
 
 const LoginForm = () => {
     const router = useRouter();
+    const { refetchUser } = useUser();
     const form = useForm<FormValues>({
         defaultValues: {
-            email : "a@gmail.com",
+            email: "a@gmail.com",
             password: "123456"
         }
     });
 
-    const  {
+    const {
         register,
         handleSubmit,
         formState: { errors },
         reset, setValue
     } = form;
 
-    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        const toastLoading = toast.loading("Logging...")
-        try {
-            const res = await loginUser(data)
-            console.log(res);
-            if (res.success) {
-                toast.success(res.message, { id: toastLoading })
-                reset();
-                router.push('/')
-            } else if (res.err) {
-                toast.error(res?.message || "Something went wrong!", { id: toastLoading })
-            }
-        } catch (error: any) {
-            toast.error(error.message, { id: toastLoading })
-        }
+   
+const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastLoading = toast.loading("Logging...");
+    try {
+      const res = await loginUser(data);
+      if (res.success) {
+        toast.success(res.message, { id: toastLoading });
+        await refetchUser();
+        reset();
+        router.push("/");
+      } else {
+        toast.error(res?.message || "Something went wrong!", { id: toastLoading });
+      }
+    } catch (error: any) {
+      toast.error(error.message, { id: toastLoading });
     }
+  };
 
-     const handleAsInstructor = () => {
+    const handleAsInstructor = () => {
         setValue("email", "instractor@gmail.com");
         setValue("password", "123456");
         form.handleSubmit(onSubmit)();
     }
-     const handleAsAdmin = () => {
+    const handleAsAdmin = () => {
         setValue("email", "admin@gmail.com");
         setValue("password", "123456");
         form.handleSubmit(onSubmit)();
@@ -70,6 +74,10 @@ const LoginForm = () => {
 
             {/* Glass form */}
             <div className="relative z-10 w-full max-w-md p-8 rounded-2xl shadow-xl bg-[#192642] backdrop-blur-lg border border-white/20 text-white">
+
+                <div className="flex justify-center mb-2">
+                    <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
+                </div>
                 <h2 className="text-3xl font-semibold text-center mb-6">Welcome Back</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
@@ -117,17 +125,17 @@ const LoginForm = () => {
                 </form>
 
                 <div className="flex justify-between items-center gap-8">
-                        <div className="flex-1">
-                            <button title="Instructor credentials" onClick={handleAsInstructor} className="bg-[#07a698] w-full my-4 py-3 rounded cursor-pointer">
-                                As a Instructor
-                            </button>
-                        </div>
-                        <div className="flex-1">
-                            <button title="Admin credentials" onClick={handleAsAdmin} className="bg-[#07a698] w-full my-4 py-3 rounded cursor-pointer">
-                                As a Admin
-                            </button>
-                        </div>
+                    <div className="flex-1">
+                        <button title="Instructor credentials" onClick={handleAsInstructor} className="bg-[#07a698] w-full my-4 py-3 rounded cursor-pointer">
+                            As a Instructor
+                        </button>
                     </div>
+                    <div className="flex-1">
+                        <button title="Admin credentials" onClick={handleAsAdmin} className="bg-[#07a698] w-full my-4 py-3 rounded cursor-pointer">
+                            As a Admin
+                        </button>
+                    </div>
+                </div>
                 <p className="text-sm mt-6 text-center text-white/70">
                     Don&apos;t have an account?{" "}
                     <Link href="/register" className="underline text-cyan-400">Sign up</Link>

@@ -54,7 +54,7 @@ const Payment = ({ course }: { course: ICourse }) => {
     return "Unknown Device";
   };
   return (
-    <div className="max-w-6xl mx-auto p-6 md:p-10 transition-all flex justify-between gap-8">
+    <div className="max-w-6xl mx-auto p-6 md:p-10 transition-all md:flex justify-between gap-8">
       <div className=" flex-1 ">
         <div className="bg-white shadow-xl rounded-2xl p-6 border border-dashed border-[#07a698] mb-8">
           <h4 className="text-2xl font-semibold mb-4 text-teal-700">অর্ডার সারাংশ</h4>
@@ -111,7 +111,7 @@ const Payment = ({ course }: { course: ICourse }) => {
           </div>
         </div>
       </div>
-      <div className="bg-white shadow-xl rounded-2xl p-6 border border-dashed border-[#07a698] flex-1">
+      <div className="bg-white shadow-xl rounded-2xl p-6 border border-dashed border-[#07a698] flex-1 mt-8 md:mt-0 h-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] p-6 rounded-xl shadow-inner space-y-5 transition-all duration-300"

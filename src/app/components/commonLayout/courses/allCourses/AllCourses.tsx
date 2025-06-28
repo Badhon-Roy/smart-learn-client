@@ -1,5 +1,7 @@
+"use client"
 import CourseCard from "@/app/shared/CourseCard";
 import { ICategory, ICourse } from "@/types";
+import { useSearchParams } from 'next/navigation';
 
 const AllCourses = ({
     allCourses,
@@ -8,13 +10,22 @@ const AllCourses = ({
     allCourses: ICourse[];
     allCategories: ICategory[];
 }) => {
-    const filteredCourses = allCourses?.filter(
-        (course) =>
-            course?.status === "Ongoing" &&
-            course?.isApproved === true &&
-            course?.category?.name
-    );
-    console.log(filteredCourses);
+
+    const searchParams = useSearchParams()
+    const search = searchParams.get('category')
+    const filterByCategoryCourses = allCourses?.filter(course => course?.category?._id === search && course?.status === "Ongoing" &&
+        course?.isApproved === true)
+
+
+    const filteredCourses = search && filterByCategoryCourses.length > 0 ? filterByCategoryCourses?.filter((course) =>
+        course?.status === "Ongoing" &&
+        course?.isApproved === true &&
+        course?.category?.name
+    ) : allCourses?.filter((course) =>
+        course?.status === "Ongoing" &&
+        course?.isApproved === true &&
+        course?.category?.name
+    )
 
     // Get unique category names from filtered courses
     const usedCategoryNames = Array.from(

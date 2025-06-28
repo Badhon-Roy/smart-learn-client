@@ -1,12 +1,11 @@
+"use client"
 import CourseCard from "@/app/shared/CourseCard";
-import { getAllCourse } from "@/services/course";
 import { ICourse } from "@/types";
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 
 
-const OngoingCourses = async () => {
-    const { data: courses } = await getAllCourse();
-    const filteredCourses = courses?.filter((course: ICourse) => course?.status === "Ongoing" && course?.isApproved === true );
+const OngoingCourses = ({filteredOngoingCourses} : {filteredOngoingCourses : ICourse[]}) => {
+
     return (
         <div className="bg-[#f2f4f7] md:px-0 px-4">
             <div className="container mx-auto py-20">
@@ -18,7 +17,7 @@ const OngoingCourses = async () => {
                 </div>
                 <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:gird-cols-2 grid-cols-1 gap-8 mt-8">
                     {
-                        filteredCourses?.slice(0, 8)?.map((course: ICourse) => (
+                        filteredOngoingCourses?.slice(0, 8)?.map((course: ICourse) => (
                             <CourseCard key={course?._id} course={course} />
                         ))
                     }

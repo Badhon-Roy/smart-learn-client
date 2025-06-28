@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import Logo from "@/assets/images/logo.png";
+import Image from "next/image";
 
 const RegisterForm = () => {
     const router = useRouter();
@@ -35,6 +37,9 @@ const RegisterForm = () => {
   return (
     <div className="relative bg-[#192136] min-h-screen flex items-center justify-center overflow-hidden px-4">
       <div className="relative z-10 w-full max-w-md p-8 rounded-2xl shadow-xl bg-[#192642]/70 backdrop-blur-lg border border-white/20 text-white">
+          <div className="flex justify-center mb-2">
+                    <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
+                </div>
         <h2 className="text-3xl font-semibold text-center mb-6">Create an Account</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name */}

@@ -25,42 +25,44 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useUser } from '@/context/UserContext';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import { logout } from '@/services/auth';
+import Logo from '@/assets/images/logo.png';
+import Image from 'next/image';
 
 const navItems = {
     student: [
-      { label: 'Dashboard', href: '/dashboard/student', icon: <DashboardIcon /> },
-      { label: 'Browse Courses', href: '/courses', icon: <ClassIcon /> },
-      { label: 'My Courses', href: '/dashboard/student/my-courses', icon: <PlayCircleIcon /> },
-      { label: 'Assignments', href: '/dashboard/student/assignments', icon: <AssignmentTurnedInIcon /> },
-      { label: 'Quizzes', href: '/dashboard/student/quizzes', icon: <QuizIcon /> },
-      { label: 'Certificates', href: '/dashboard/student/certificates', icon: <WorkspacePremiumIcon /> },
-      { label: 'Progress', href: '/dashboard/student/progress', icon: <SettingsIcon /> },
-      { label: 'Home', href: '/', icon: <HomeIcon /> },
+        { label: 'Dashboard', href: '/dashboard/student', icon: <DashboardIcon /> },
+        { label: 'Browse Courses', href: '/courses', icon: <ClassIcon /> },
+        { label: 'My Courses', href: '/dashboard/student/my-courses', icon: <PlayCircleIcon /> },
+        { label: 'Assignments', href: '/dashboard/student/assignments', icon: <AssignmentTurnedInIcon /> },
+        { label: 'Quizzes', href: '/dashboard/student/quizzes', icon: <QuizIcon /> },
+        { label: 'Certificates', href: '/dashboard/student/certificates', icon: <WorkspacePremiumIcon /> },
+        { label: 'Progress', href: '/dashboard/student/progress', icon: <SettingsIcon /> },
+        { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
-  
+
     instructor: [
-      { label: 'Instructor Dashboard', href: '/dashboard/instructor', icon: <DashboardIcon /> },
-      { label: 'Manage Course', href: '/dashboard/instructor/manage-course', icon: <UploadFileIcon /> },
-      { label: 'Manage Content', href: '/dashboard/instructor/manage-content', icon: <UploadFileIcon /> },
-      { label: 'Manage Quizzes', href: '/dashboard/instructor/manage-quizzes', icon: <QuizIcon /> },
-      { label: 'Manage Category', href: '/dashboard/instructor/manage-category', icon: <CategoryOutlined /> },
-      { label: 'Track Performance', href: '/dashboard/instructor/performance', icon: <PeopleIcon /> },
-      { label: 'Issue Certificates', href: '/dashboard/instructor/certificates', icon: <WorkspacePremiumIcon /> },
-      { label: 'Home', href: '/', icon: <HomeIcon /> },
+        { label: 'Instructor Dashboard', href: '/dashboard/instructor', icon: <DashboardIcon /> },
+        { label: 'Manage Course', href: '/dashboard/instructor/manage-course', icon: <UploadFileIcon /> },
+        { label: 'Manage Content', href: '/dashboard/instructor/manage-content', icon: <UploadFileIcon /> },
+        { label: 'Manage Quizzes', href: '/dashboard/instructor/manage-quizzes', icon: <QuizIcon /> },
+        { label: 'Manage Category', href: '/dashboard/instructor/manage-category', icon: <CategoryOutlined /> },
+        { label: 'Track Performance', href: '/dashboard/instructor/performance', icon: <PeopleIcon /> },
+        { label: 'Issue Certificates', href: '/dashboard/instructor/certificates', icon: <WorkspacePremiumIcon /> },
+        { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
-  
+
     admin: [
-      { label: 'Admin Panel', href: '/dashboard/admin', icon: <DashboardIcon /> },
-      { label: 'User Management', href: '/dashboard/admin/users', icon: <PeopleIcon /> },
-      { label: 'Course Approvals', href: '/dashboard/admin/courses', icon: <AssignmentTurnedInIcon /> },
-      { label: 'Payment Management', href: '/dashboard/admin/payments', icon: <MonetizationOnIcon /> },
-      { label: 'Site Settings', href: '/dashboard/admin/settings', icon: <SettingsIcon /> },
-      { label: 'Home', href: '/', icon: <HomeIcon /> },
+        { label: 'Admin Panel', href: '/dashboard/admin', icon: <DashboardIcon /> },
+        { label: 'User Management', href: '/dashboard/admin/users', icon: <PeopleIcon /> },
+        { label: 'Course Approvals', href: '/dashboard/admin/courses', icon: <AssignmentTurnedInIcon /> },
+        { label: 'Payment Management', href: '/dashboard/admin/payments', icon: <MonetizationOnIcon /> },
+        { label: 'Site Settings', href: '/dashboard/admin/settings', icon: <SettingsIcon /> },
+        { label: 'Home', href: '/', icon: <HomeIcon /> },
     ],
-  };
+};
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-    const { user ,setIsLoading} = useUser();
+    const { user, setIsLoading } = useUser();
     const role = user?.role;
     const currentNavItems = role && navItems[role];;
     const pathname = usePathname();
@@ -86,7 +88,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="min-h-screen flex bg-[#0b0f1a] text-white relative overflow-hidden">
             {/* Desktop Sidebar */}
             <aside className="hidden px-6 py-6 md:flex w-72 flex-col bg-[#101929]/60 backdrop-blur-xl border-r border-white/10 shadow-lg">
-                <div className=" text-3xl font-bold tracking-widest text-[#00ffff]">NeoDash</div>
+                <Link href="/" passHref className='mb-2'>
+                    <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
+                </Link>
+              
                 <h2 className='uppercase'><span className='text-[#00ffff]'>{user?.role}</span> Dashboard</h2>
                 <nav className="flex flex-col gap-2 mt-8">
                     {currentNavItems?.map(({ label, href, icon }) => {
@@ -121,8 +126,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                                 PaperProps={{
                                     elevation: 3,
                                     sx: {
-                                        ml:7,
-                                        mb:8, 
+                                        ml: 7,
+                                        mb: 8,
                                         minWidth: 160,
                                     },
                                 }}
@@ -137,7 +142,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Mobile Header */}
             <header className="md:hidden fixed top-0 left-0 w-full z-50 px-4 py-3 bg-[#0e1422]/80 backdrop-blur-md border-b border-white/10 flex items-center justify-between">
-                <div className="text-xl font-semibold text-[#00ffff]">NeoDash</div>
+            <Link href="/" passHref className='mb-2'>
+                    <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
+                </Link>
                 <button onClick={() => setDrawerOpen(!drawerOpen)}>
                     {drawerOpen ? <CloseIcon fontSize="large" /> : <MenuIcon fontSize="large" />}
                 </button>
