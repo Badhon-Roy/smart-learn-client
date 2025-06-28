@@ -38,7 +38,7 @@ import { toast } from 'sonner';
 const navLinks = [
     { title: 'Home', href: '/', icon: <HomeIcon /> },
     { title: 'Courses', href: '/courses', icon: <SchoolIcon /> },
-    { title: 'Online Batch', href: '/online-batch', icon: <GroupsIcon /> },
+    { title: 'Community', href: '/community', icon: <GroupsIcon /> },
     { title: 'English Center', href: '/english-center', icon: <LanguageIcon /> },
     { title: 'My Learning', href: '/dashboard/student/my-courses', icon: <BookIcon /> },
 ];
@@ -124,7 +124,7 @@ const Navbar = () => {
                                             },
                                         }}
                                     >
-                                        {link.title}
+                                            <span className='pr-1'>{link.icon}</span>{link.title}
                                     </Box>
                                 </Link>
                             ))}

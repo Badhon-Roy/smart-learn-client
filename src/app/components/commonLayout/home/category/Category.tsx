@@ -8,7 +8,7 @@ const Category = ({categories} : {categories : ICategory[]}) => {
    
     return (
         <div className="bg-[#143532] relative md:px-0 px-4">
-             <div className="absolute lg:right-0 top-1/2 lg:bottom-20 z-10 md:h-[450px] h-[250px] w-[240px] md:w-[430px] rotate-45 bg-gradient-to-l from-[#07e0cb] to-cyan-400 opacity-30 blur-[150px] filter dark:opacity-50"></div>
+             <div className="absolute lg:left-1/2 lg:top-25 top-70 lg:bottom-20 z-10 md:h-[450px] h-[250px] w-[240px] md:w-[400px] rotate-45 bg-gradient-to-l from-[#07e0cb] to-cyan-400 opacity-30 blur-[150px] filter dark:opacity-50"></div>
             <div className="container mx-auto py-32">
                 <div className="text-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4">
