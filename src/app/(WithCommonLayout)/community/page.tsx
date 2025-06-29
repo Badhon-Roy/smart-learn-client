@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const CommunityPage = () => {
@@ -47,7 +48,7 @@ const CommunityPage = () => {
             >
               <div className="avatar mb-3">
                 <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img className="rounded-full" src={`https://i.pravatar.cc/150?img=${i + 1}`} alt="user" />
+                  <Image className="rounded-full" src={`https://i.pravatar.cc/150?img=${i + 1}`} alt="user" width={50} height={50} />
                 </div>
               </div>
               <h4 className="font-semibold">User {i + 1}</h4>

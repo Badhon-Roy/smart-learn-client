@@ -3,17 +3,17 @@ import { getAllUser } from "@/services/auth";
 import { getAllCourse } from "@/services/course";
 import { ICourse, IUser } from "@/types";
 import {
-    People,
-    MenuBook,
-    PersonPin,
-    AttachMoney,
-    QueryStats,
-    ThumbUp,
+    // People,
+    // MenuBook,
+    // PersonPin,
+    // AttachMoney,
+    // QueryStats,
+    // ThumbUp,
     NotificationsActive,
     BarChart,
     Feedback,
-    WbSunny,
-    DarkMode,
+    // WbSunny,
+    // DarkMode,
     AdminPanelSettings,
     Settings,
     Bolt,
@@ -67,6 +67,7 @@ const AdminDashboardPage = async () => {
     const { data: allUsers } = await getAllUser();
     const { data: allCourses } = await getAllCourse();
     const approvalCourses = await allCourses?.filter((course: ICourse) => course?.isApproved === true)
+    console.log(approvalCourses);
     const instructors = await allUsers?.filter((user: IUser) => user?.role === "instructor")
     const students = await allUsers?.filter((user: IUser) => user?.role === "student")
     return (
@@ -383,7 +384,7 @@ const AdminDashboardPage = async () => {
                     </h2>
                     <ul className="space-y-2 text-sm">
                         <li>🎉 New instructor signup: Sarah</li>
-                        <li>🚨 Pending approval: "Node.js Basics"</li>
+                        <li>🚨 Pending approval: `&quot;`Node.js Basics`&quot;`</li>
                         <li>✅ 200+ enrollments this week</li>
                         <li>⚙️ Maintenance: May 15</li>
                     </ul>

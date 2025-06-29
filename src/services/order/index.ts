@@ -6,7 +6,7 @@ import { FieldValues } from "react-hook-form";
 
 
 export const createOrder = async (orderData: FieldValues) => {
-    const res = await fetch(`http://localhost:5000/api/v1/orders`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/orders`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

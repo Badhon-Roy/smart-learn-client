@@ -3,7 +3,7 @@
 import { ICourse } from "@/types";
 import Image from "next/image";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { AccessTime, People, PriceChange, School } from "@mui/icons-material";
+import { AccessTime, People, School } from "@mui/icons-material";
 import {
     Accordion,
     AccordionSummary,
@@ -23,7 +23,7 @@ import { useUser } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
 const CourseDetails = ({ course, filterCourse }: { course: ICourse, filterCourse: ICourse[] }) => {
-    const { title, thumbnail, category, description, duration, price, discountPrice, classLevel, instructors, subject, faqs, rating = 5, reviews, whatYouWillLearn, status, studentsEnrolled } = course;
+    const { title, thumbnail, category, description, duration, price, discountPrice, classLevel, instructors, subject, faqs, rating = 5, whatYouWillLearn, studentsEnrolled } = course;
     const {user} = useUser();
     const router = useRouter();
     const [expanded, setExpanded] = useState<string | false>(false);
