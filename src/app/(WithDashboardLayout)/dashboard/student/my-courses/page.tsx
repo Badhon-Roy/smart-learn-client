@@ -1,12 +1,9 @@
 
-import MyCourses from "@/app/components/dashboardLayout/student/MyCourses/MyCourses";
-
  
 const MyCoursesDashboardPage = () => {
-  
     return (
         <div>
-           <MyCourses/>
+            <h2>My Courses Page</h2>
         </div>
     );
 };
