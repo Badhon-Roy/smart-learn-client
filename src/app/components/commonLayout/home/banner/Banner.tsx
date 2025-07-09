@@ -106,7 +106,7 @@ const Banner = ({courses} : {courses : ICourse[]}) => {
                         1280: { slidesPerView: 5.5 },
                     }}
                 >
-                    {categories.map((category, idx) => (
+                    {categories?.map((category, idx) => (
                         <SwiperSlide key={idx}>
                             <Link key={idx} href={`/courses?class=${category.value}`}>
                                 <div className="bg-white rounded-lg p-4 relative group overflow-hidden cursor-pointer ">

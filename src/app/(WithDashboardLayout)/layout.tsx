@@ -91,7 +91,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <Link href="/" passHref className='mb-2'>
                     <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
                 </Link>
-              
+
                 <h2 className='uppercase'><span className='text-[#00ffff]'>{user?.role}</span> Dashboard</h2>
                 <nav className="flex flex-col gap-2 mt-8">
                     {currentNavItems?.map(({ label, href, icon }) => {
@@ -142,7 +142,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Mobile Header */}
             <header className="md:hidden fixed top-0 left-0 w-full z-50 px-4 py-3 bg-[#0e1422]/80 backdrop-blur-md border-b border-white/10 flex items-center justify-between">
-            <Link href="/" passHref className='mb-2'>
+                <Link href="/" passHref className='mb-2'>
                     <Image src={Logo} alt="smart_learn_logo" width={90} height={90} />
                 </Link>
                 <button onClick={() => setDrawerOpen(!drawerOpen)}>

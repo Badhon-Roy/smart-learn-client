@@ -114,7 +114,7 @@ const ManageCourse = ({ courses }: { courses: Course[] }) => {
       <div className="rounded-xl shadow-2xl backdrop-blur-lg bg-white/10 border border-white/20">
         {/* Responsive Scroll Wrapper */}
         <div className="w-full overflow-x-auto">
-          <TableContainer sx={{ maxHeight: 600 }}>
+          <TableContainer sx={{ maxHeight: 800 }}>
             <Table stickyHeader>
               <TableHead>
                 <TableRow>
