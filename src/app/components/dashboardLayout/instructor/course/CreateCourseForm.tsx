@@ -15,11 +15,11 @@ const courseSchema = z.object({
     description: z.string().min(10),
     instructors: z.array(
         z.object({
-            instructor: z.string().min(5, "Instructor ID is required"),
-            subject: z.string().min(2, "Subject must be at least 2 characters"),
+            instructor: z.string().min(2, "Instructor ID is required"),
+            subject: z.string().min(1, "Subject must be at least 2 characters"),
         })
     ),
-    category: z.string().min(5, "Category is required"),
+    category: z.string().min(4, "Category is required"),
     price: z.number().min(0),
     duration: z.string().min(1),
     discountPrice: z.number().min(0).optional(),

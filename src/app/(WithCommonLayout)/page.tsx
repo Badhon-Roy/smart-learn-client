@@ -17,7 +17,7 @@ const HomePage = async () => {
     const filteredOngoingCourses = courses?.filter((course: ICourse) => course?.status === "Ongoing" && course?.isApproved === true );
     return (
         <div>
-            <Banner />
+            <Banner courses={courses}/>
             <About />
             <Category categories={categories}/>
             <OngoingCourses filteredOngoingCourses={filteredOngoingCourses}/>

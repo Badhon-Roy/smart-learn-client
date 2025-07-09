@@ -6,35 +6,43 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Link from "next/link";
+import { ICourse } from "@/types";
 
-const Banner = () => {
+const Banner = ({courses} : {courses : ICourse[]}) => {
     const categories = [
         {
             title: "Class 6",
+            value: "6",
             courses: "15",
             img: "https://cdn.10minuteschool.com/images/image_6344663_1733036653015.png?w=300&h=300",
         },
         {
             title: "Class 7",
+            value: "7",
             courses: "15",
             img: "https://cdn.10minuteschool.com/images/9-10_1732778140427.png?w=300&h=300",
         },
         {
             title: "Class 8",
+            value: "8",
             courses: "15",
             img: "https://cdn.10minuteschool.com/images/ssc_1732778162589.png?w=300&h=300",
         },
         {
             title: "Class 9-10",
+            value: "9-10",
             courses: "15",
             img: "https://cdn.10minuteschool.com/images/hscbag_1732778180651.png?w=300&h=300",
         },
         {
             title: "Class 11-12",
+            value: "11-12",
             courses: "15",
             img: "https://i.postimg.cc/ydbVZjnz/Screenshot-27-removebg-preview.png",
         },
     ];
+
 
     return (
         <div className="bg-[#1f2b2a] lg:min-h-[70vh] md:min-h-[60vh] min-h-[50vh] flex flex-col justify-center items-center relative">
@@ -100,20 +108,30 @@ const Banner = () => {
                 >
                     {categories.map((category, idx) => (
                         <SwiperSlide key={idx}>
-                           <div key={idx} className="bg-white rounded-lg p-4 relative group overflow-hidden cursor-pointer ">
-                                <div className="absolute top-[-40px] right-[-40px] w-[157px] h-[157px] bg-[#07A698] blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full z-0"></div>
-                                <div className="relative z-10 flex flex-col items-center">
-                                    <Image
-                                        className="rounded-full bg-[#f2f4f7] p-3 w-[100px] h-[100px]"
-                                        src={category?.img}
-                                        alt="category"
-                                        width={100}
-                                        height={100}
-                                    />
-                                    <h2 className="text-lg text-center font-bold text-black mt-4">{category?.title}</h2>
-                                    <p className="text-black text-center">{category?.courses} Courses</p>
+                            <Link key={idx} href={`/courses?class=${category.value}`}>
+                                <div className="bg-white rounded-lg p-4 relative group overflow-hidden cursor-pointer ">
+                                    <div className="absolute top-[-40px] right-[-40px] w-[157px] h-[157px] bg-[#07A698] blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full z-0"></div>
+                                    <div className="relative z-10 flex flex-col items-center">
+                                        <Image
+                                            className="rounded-full bg-[#f2f4f7] p-3 w-[100px] h-[100px]"
+                                            src={category?.img}
+                                            alt="category"
+                                            width={100}
+                                            height={100}
+                                        />
+                                        <h2 className="text-lg text-center font-bold text-black mt-4">{category?.title}</h2>
+                                        {
+                                            courses?.filter(course => course?.class === category.value && course?.status === "Ongoing" && course?.isApproved === true).length > 0 ? (
+                                                <p className="text-[#07a698] text-center mt-2">
+                                                    {courses.filter(course => course?.class === category.value && course?.status === "Ongoing" && course?.isApproved === true).length} Ongoing
+                                                </p>
+                                            ) : (
+                                                <p className="text-red-500 text-center mt-2">No Ongoing Courses</p>
+                                            )
+                                        }
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </SwiperSlide>
 
 

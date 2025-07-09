@@ -12,8 +12,8 @@ const AllCourses = ({
 }) => {
 
     const searchParams = useSearchParams()
-    const search = searchParams.get('category')
-    const filterByCategoryCourses = allCourses?.filter(course => course?.category?._id === search && course?.status === "Ongoing" &&
+    const search = searchParams.get('category', ) || searchParams.get('class')
+    const filterByCategoryCourses = allCourses?.filter(course => course?.category?._id === search || course?.class === search && course?.status === "Ongoing" &&
         course?.isApproved === true)
 
 
