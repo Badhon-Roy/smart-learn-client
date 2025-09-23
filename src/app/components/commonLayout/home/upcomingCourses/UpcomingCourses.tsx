@@ -11,7 +11,7 @@ const UpcomingCourses = ({filteredCourses} : {filteredCourses : ICourse[]}) => {
             <div className="container mx-auto py-20 lg:w-2/3">
                 <div className="flex flex-col items-center justify-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4">
-                        <h3 className="flex items-center gap-2"><span className="bg-[#07a6992a] w-6 h-6 p-1 flex items-center justify-center rounded-full"><BoltOutlinedIcon className="text-[#07a698]" /></span> Coming Soon</h3>
+                        <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> Coming Soon</h3>
                     </div>
                     <h2 className="lg:text-[40px] md:text-[30px] text-[20px] font-bold my-4">Our Upcoming Courses</h2>
                 </div>

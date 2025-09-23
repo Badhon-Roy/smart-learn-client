@@ -38,9 +38,7 @@ import { toast } from 'sonner';
 const navLinks = [
     { title: 'Home', href: '/', icon: <HomeIcon /> },
     { title: 'Courses', href: '/courses', icon: <SchoolIcon /> },
-    { title: 'Community', href: '/community', icon: <GroupsIcon /> },
-    { title: 'English Center', href: '/english-center', icon: <LanguageIcon /> },
-    { title: 'My Learning', href: '/dashboard/student/my-courses', icon: <BookIcon /> },
+    { title: 'Community', href: '/community', icon: <GroupsIcon /> }
 ];
 
 const Navbar = () => {
@@ -124,10 +122,40 @@ const Navbar = () => {
                                             },
                                         }}
                                     >
-                                            <span className='pr-1'>{link.icon}</span>{link.title}
+                                        <span className='pr-1'>{link.icon}</span>{link.title}
                                     </Box>
                                 </Link>
                             ))}
+                            {user &&
+                                <Link key={'/dashboard/student/my-courses'} href={'/dashboard/student/my-courses'} passHref>
+                                    <Box
+                                        sx={{
+                                            position: 'relative',
+                                            color: isActive('/dashboard/student/my-courses') ? '#07a698' : '#ffffffcc',
+                                            fontWeight: isActive('/dashboard/student/my-courses') ? 700 : 500,
+                                            px: 1,
+                                            py: 0.5,
+                                            cursor: 'pointer',
+                                            letterSpacing: '0.5px',
+                                            transition: 'all 0.3s ease',
+                                            '&::after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                bottom: -2,
+                                                left: 0,
+                                                width: isActive('/dashboard/student/my-courses') ? '100%' : 0,
+                                                height: '2px',
+                                                backgroundColor: '#07a698',
+                                                transition: 'width 0.3s ease',
+                                            },
+                                            '&:hover::after': {
+                                                width: '100%',
+                                            },
+                                        }}
+                                    >
+                                        <span className='pr-1'><BookIcon /> </span>My Learning
+                                    </Box>
+                                </Link>}
                         </Box>
                     ) : (
                         <IconButton onClick={toggleDrawer}>

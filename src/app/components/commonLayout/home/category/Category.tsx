@@ -12,7 +12,7 @@ const Category = ({categories} : {categories : ICategory[]}) => {
             <div className="container mx-auto py-32">
                 <div className="text-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4">
-                        <h3 className="flex items-center gap-2"><span className="bg-[#07a6992a] w-6 h-6 p-1 flex items-center justify-center rounded-full"><BoltOutlinedIcon className="text-[#07a698]" /></span> Top Categories</h3>
+                        <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> Top Categories</h3>
                     </div>
                     <h2 className="lg:text-[40px] md:text-[30px] text-[20px] font-bold my-4 text-white">Our Popular Categories</h2>
                 </div>
