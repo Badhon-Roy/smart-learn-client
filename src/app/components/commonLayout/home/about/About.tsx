@@ -15,7 +15,7 @@ const About = () => {
             <div className="md:flex justify-between items-center container mx-auto md:pt-72 pt-64 pb-32 md:px-0 px-4 gap-6">
                 <div className="md:hidden flex justify-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4 mb-8">
-                        <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> About Company</h3>
+                        <h3 className="flex items-center gap-2 font-bold"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> About Company</h3>
                     </div>
                 </div>
                 <div className="relative flex-1">
@@ -25,7 +25,7 @@ const About = () => {
                 </div>
                 <div className="flex-1">
                     <div className="hidden border border-gray-400 text-sm md:inline-block bg-white rounded-full p-1 pr-4">
-                        <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> About Company</h3>
+                        <h3 className="flex items-center gap-2 font-bold"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> About Company</h3>
                     </div>
                     <h2 className="lg:text-[40px] md:text-[30px] text-[20px] md:mt-0 mt-16 font-bold my-4">The Ultimate Online Platform for Interactive and Personalized Learning</h2>
                     <Box sx={{ width: '100%' }}>

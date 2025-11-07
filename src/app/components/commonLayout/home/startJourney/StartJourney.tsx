@@ -7,7 +7,7 @@ const StartJourney = () => {
         <div className="bg-white md:px-0 px-4">
             <div className="container mx-auto py-20 md:flex justify-between items-center gap-8 lg:w-2/3">
                 <div className="border border-gray-400 text-sm md:hidden inline-block bg-white rounded-full p-1 pr-4 mb-8">
-                    <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon/></span> How We Start Journey</h3>
+                    <h3 className="flex items-center gap-2 font-bold"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon/></span> How We Start Journey</h3>
                 </div>
                 <div className="flex md:gap-6 gap-4 items-center flex-1 justify-end">
                     <div className="flex-1">
@@ -20,7 +20,7 @@ const StartJourney = () => {
                 </div>
                 <div className="flex-1">
                     <div className="border border-gray-400 text-sm hidden md:inline-block bg-white rounded-full p-1 pr-4">
-                        <h3 className="flex items-center gap-2"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon/></span> How We Start Journey</h3>
+                        <h3 className="flex items-center gap-2 font-bold"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon/></span> How We Start Journey</h3>
                     </div>
                     <h2 className="lg:text-[40px] md:text-[30px] text-[20px] font-bold my-4">We Care About Your Life For
                         Better Future </h2>

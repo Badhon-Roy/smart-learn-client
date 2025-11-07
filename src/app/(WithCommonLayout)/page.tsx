@@ -8,6 +8,7 @@ import StartJourney from './../components/commonLayout/home/startJourney/StartJo
 import { getAllCategory } from '@/services/category';
 import { getAllCourse } from '@/services/course';
 import { ICourse } from './../../types/course';
+import WhatNew from '../components/commonLayout/home/whatNew/WhatNew';
 
 
 const HomePage = async () => {
@@ -21,6 +22,7 @@ const HomePage = async () => {
             <About />
             <Category categories={categories}/>
             <OngoingCourses filteredOngoingCourses={filteredOngoingCourses}/>
+            <WhatNew/>
             <UpcomingCourses filteredCourses={filteredCourses}/>
             <StartJourney/>
         </div>
