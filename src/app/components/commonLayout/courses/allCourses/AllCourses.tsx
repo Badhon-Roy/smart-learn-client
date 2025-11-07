@@ -10,9 +10,8 @@ const AllCourses = ({
     allCourses: ICourse[];
     allCategories: ICategory[];
 }) => {
-
     const searchParams = useSearchParams()
-    const search = searchParams.get('category', ) || searchParams.get('class')
+    const search = searchParams.get('category',) || searchParams.get('class')
     const filterByCategoryCourses = allCourses?.filter(course => course?.category?._id === search || course?.class === search && course?.status === "Ongoing" &&
         course?.isApproved === true)
 
@@ -39,7 +38,6 @@ const AllCourses = ({
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-6 text-center">All Courses</h1>
 
             {filteredCategories?.map((category) => {
                 const categoryCourses = filteredCourses?.filter(

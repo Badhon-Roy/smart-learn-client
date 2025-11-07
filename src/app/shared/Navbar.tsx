@@ -1,28 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import {
-    Toolbar,
-    IconButton,
-    Drawer,
-    List,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Box,
-    Avatar,
-    useTheme,
-    useMediaQuery,
-    Divider,
-    Typography,
-    Menu,
-    MenuItem,
-} from '@mui/material';
+import { Toolbar,IconButton,Drawer,List,ListItemButton,ListItemIcon, ListItemText, Box, Avatar, useTheme, useMediaQuery, Divider, Typography, Menu,MenuItem} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import SchoolIcon from '@mui/icons-material/School';
 import GroupsIcon from '@mui/icons-material/Groups';
-import LanguageIcon from '@mui/icons-material/Language';
 import BookIcon from '@mui/icons-material/Book';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -34,10 +17,12 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { toast } from 'sonner';
+import { PersonOutline } from '@mui/icons-material';
 
 const navLinks = [
     { title: 'Home', href: '/', icon: <HomeIcon /> },
     { title: 'Courses', href: '/courses', icon: <SchoolIcon /> },
+    { title: 'About Us', href: '/about', icon: <PersonOutline /> },
     { title: 'Community', href: '/community', icon: <GroupsIcon /> }
 ];
 

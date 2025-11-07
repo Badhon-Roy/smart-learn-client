@@ -1,7 +1,8 @@
-import AllCourses from "@/app/components/commonLayout/courses/allCourses/AllCourses";
+import { lazy, Suspense } from "react";
+const CommonBanner = lazy(() => import("@/app/common/CommonBanner"));
+const AllCourses = lazy(() => import("@/app/components/commonLayout/courses/allCourses/AllCourses"));
 import { getAllCategory } from "@/services/category";
 import { getAllCourse } from "@/services/course";
-import { Suspense } from "react";
 
 
 const CoursesPage = async () => {
@@ -9,6 +10,7 @@ const CoursesPage = async () => {
     const { data: allCategories } = await getAllCategory();
     return (
         <Suspense fallback={<div>Loading courses...</div>}>
+            <CommonBanner title="Courses" />
             <AllCourses allCourses={allCourses} allCategories={allCategories} />
         </Suspense>
     );
