@@ -9,6 +9,7 @@ import { getAllCategory } from '@/services/category';
 import { getAllCourse } from '@/services/course';
 import { ICourse } from './../../types/course';
 import WhatNew from '../components/commonLayout/home/whatNew/WhatNew';
+import Testimonial from '../components/commonLayout/home/testimonial/Testimonial';
 
 
 const HomePage = async () => {
@@ -25,6 +26,7 @@ const HomePage = async () => {
             <WhatNew/>
             <UpcomingCourses filteredCourses={filteredCourses}/>
             <StartJourney/>
+            <Testimonial/>
         </div>
     );
 };
