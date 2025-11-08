@@ -5,7 +5,7 @@ import { ICourse } from "@/types";
 import Link from "next/link";
 
 const CourseCard = ({ course }: { course: ICourse }) => {
-    const { _id, thumbnail, title, duration,status, studentsEnrolled
+    const { _id, thumbnail, title, duration, status, studentsEnrolled
         , price, discountPrice, category
     } = course;
     return (
@@ -60,10 +60,15 @@ const CourseCard = ({ course }: { course: ICourse }) => {
                 ) : (
                     <p className="text-lg font-bold text-[#07a698]">৳{price}</p>
                 )}
-                <Link href={`/courses/${_id}`}>
-                <button className="border border-gray-300 rounded-full px-3 py-1 font-medium hover:border-[#07a698] cursor-pointer">
+                {/* <Link href={`/courses/${_id}`}>
+                    <button className="border border-gray-300 rounded-full px-3 py-1 font-medium hover:border-[#07a698] cursor-pointer">
                     View Details
                 </button>
+                </Link> */}
+                <Link href={`/courses/${_id}`}>
+                    <button className="px-6 py-2 active:scale-95 transition bg-[#07a698] rounded-full cursor-pointer text-white duration-300 hover:shadow-lg shadow-[#07a698]/30 text-sm font-medium">
+                        View Details
+                    </button>
                 </Link>
             </div>
         </div>

@@ -9,6 +9,7 @@ const AboutPage = () => {
     return (
         <div>
             <CommonBanner title="About Us" />
+            <About className="py-16"/>
             <OurTeam/>
             <Faq/>
             <Testimonial/>

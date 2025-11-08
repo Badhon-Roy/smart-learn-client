@@ -10,6 +10,7 @@ import { getAllCourse } from '@/services/course';
 import { ICourse } from './../../types/course';
 import WhatNew from '../components/commonLayout/home/whatNew/WhatNew';
 import Testimonial from '../components/commonLayout/home/testimonial/Testimonial';
+import Faq from '../components/commonLayout/home/faq/Faq';
 
 
 const HomePage = async () => {
@@ -24,8 +25,9 @@ const HomePage = async () => {
             <Category categories={categories}/>
             <OngoingCourses filteredOngoingCourses={filteredOngoingCourses}/>
             <WhatNew/>
-            <UpcomingCourses filteredCourses={filteredCourses}/>
+            <UpcomingCourses filteredCourses={[...filteredCourses, ...filteredCourses, ...filteredCourses]}/>
             <StartJourney/>
+            <Faq/>
             <Testimonial/>
         </div>
     );

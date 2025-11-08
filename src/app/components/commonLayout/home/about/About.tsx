@@ -4,7 +4,7 @@ import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useState } from "react";
-const About = () => {
+const About = ({className = "md:pt-72 pt-64 pb-32"} : {className?: string}) => {
     const [value, setValue] = useState('1');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -12,7 +12,7 @@ const About = () => {
     };
     return (
         <div className=" bg-[#f2f4f7]">
-            <div className="md:flex justify-between items-center container mx-auto md:pt-72 pt-64 pb-32 md:px-0 px-4 gap-6">
+            <div className={`${className} md:flex justify-between items-center container mx-auto md:px-0 px-4 gap-6`}>
                 <div className="md:hidden flex justify-center">
                     <div className="border border-gray-400 text-sm inline-block bg-white rounded-full p-1 pr-4 mb-8">
                         <h3 className="flex items-center gap-2 font-bold"><span className="bg-gradient-to-r from-[#07a698] to-[#04d9c2] rounded-full flex items-center justify-center text-white"><BoltOutlinedIcon /></span> About Company</h3>

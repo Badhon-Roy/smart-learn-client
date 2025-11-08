@@ -51,12 +51,10 @@ const Faq = () => {
                 <h2 className="lg:text-[40px] md:text-[30px] text-[20px] font-bold my-4">Frequently Asked Questions</h2>
             </div>
 
-
             {/* FAQ Section */}
-            {/* FAQ Section */}
-            <div className="container flex justify-between items-stretch gap-8 mx-auto w-full px-4 mt-8">
+            <div className="container flex lg:flex-row flex-col justify-between items-stretch gap-8 mx-auto w-full px-4 mt-8">
                 {/* Left: FAQ List */}
-                <div className="space-y-5 w-3/5 flex flex-col justify-center">
+                <div className="space-y-5 lg:w-3/5 flex flex-col justify-center">
                     {faqData.map((faq, index) => (
                         <motion.div
                             key={index}
@@ -109,8 +107,8 @@ const Faq = () => {
                 </div>
 
                 {/* Right: Image Section */}
-                <div className="relative w-2/5 flex justify-center items-center border border-gray-300 rounded-3xl p-2">
-                    <div className="absolute -z-10 w-[400px] h-[400px] bg-gradient-to-tr from-[#07e0cb]/30 via-[#0ef2d3]/40 to-[#c7fff7]/20 rounded-full blur-3xl"></div>
+                <div className="relative lg:w-2/5 flex justify-center items-center border border-gray-300 rounded-3xl p-2">
+                    <div className="absolute -z-10 w-full md:w-[400px] h-ful md:h-[400px] bg-gradient-to-tr from-[#07e0cb]/30 via-[#0ef2d3]/40 to-[#c7fff7]/20 rounded-full blur-3xl"></div>
                     <Image
                         src="https://www.wealthalliance.ie/wp-content/uploads/2018/06/FAQ-orange-1.png"
                         alt="faq image"
