@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Add, Remove } from "@mui/icons-material";
 import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined";
 import Image from "next/image";
+import FAQImg from "@/assets/images/FAQ.webp"
 
 const faqData = [
     {
@@ -110,7 +111,7 @@ const Faq = () => {
                 <div className="relative lg:w-2/5 flex justify-center items-center border border-gray-300 rounded-3xl p-2">
                     <div className="absolute -z-10 w-full md:w-[400px] h-ful md:h-[400px] bg-gradient-to-tr from-[#07e0cb]/30 via-[#0ef2d3]/40 to-[#c7fff7]/20 rounded-full blur-3xl"></div>
                     <Image
-                        src="https://www.wealthalliance.ie/wp-content/uploads/2018/06/FAQ-orange-1.png"
+                        src={FAQImg}
                         alt="faq image"
                         width={800}
                         height={500}
